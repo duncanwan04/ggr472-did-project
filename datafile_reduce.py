@@ -11,6 +11,10 @@ print(len(gdf))
 gdf["OCC_YEAR"] = gdf["OCC_YEAR"].astype(int)
 gdf = gdf[gdf["OCC_YEAR"] > 2019]
 
+#Keep valid coordinates (some lats/lons are 0, which are clearly invalid)
+gdf = gdf[gdf["LONG_WGS84"] != 0]
+gdf = gdf[gdf["LAT_WGS84"] != 0]
+
 #Getting rows only where there was a biking incident 
 gdf = gdf[gdf["BICYCLE"] == "YES"]
 

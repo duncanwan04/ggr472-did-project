@@ -15,8 +15,6 @@
     right: 65%;
     width: 35%;
     font-family: Arial, Helvetica, sans-serif;
-    display: grid;
-    grid-template-rows: auto auto auto auto;
 }
 
 .return_button{
