@@ -12,8 +12,15 @@ gdf["OCC_YEAR"] = gdf["OCC_YEAR"].astype(int)
 gdf = gdf[gdf["OCC_YEAR"] > 2019]
 
 #Keep valid coordinates (some lats/lons are 0, which are clearly invalid)
-gdf = gdf[gdf["LONG_WGS84"] != 0]
-gdf = gdf[gdf["LAT_WGS84"] != 0]
+#also converting to float to ensure no issues with datatype differenes
+gdf["LONG_WGS84"] = gdf["LONG_WGS84"].astype(float)
+gdf["LAT_WGS84"] = gdf["LAT_WGS84"].astype(float)
+
+gdf = gdf[
+    (gdf["LONG_WGS84"] >= -79.7) &
+    (gdf["LONG_WGS84"] <= -79.0) &
+    (gdf["LAT_WGS84"] >= 43.5) &
+    (gdf["LAT_WGS84"] <= 43.9)]
 
 #Getting rows only where there was a biking incident 
 gdf = gdf[gdf["BICYCLE"] == "YES"]
@@ -41,6 +48,10 @@ gdf = gdf[[
 ]]
 
 gdf.to_file(
-"/Users/duncan/Desktop/GGR472/Group Project/ggr472-did-project/data/cleaned_traffice_collisions.geojson",
+"/Users/duncan/Desktop/GGR472/Group Project/ggr472-did-project/data/cleaned_traffic_collisions.geojson",
 driver="GeoJSON"
+)
+
+gdf.to_csv(
+"/Users/duncan/Desktop/GGR472/Group Project/ggr472-did-project/data/cleaned_traffic_collisions.csv", index = False
 )
