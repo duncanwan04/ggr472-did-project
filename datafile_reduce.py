@@ -1,7 +1,7 @@
 
 import geopandas as gpd
 
-gdf = gpd.read_file("/Users/duncan/Desktop/GGR472/Group Project/Other/Traffic Collisions.geojson")
+gdf = gpd.read_file("/Users/duncan/Desktop/GGR472/Group Project/Raw File/Traffic Collisions.geojson")
 
 print(gdf.columns)
 print(len(gdf))
@@ -33,6 +33,7 @@ gdf["INJURY_COLLISIONS"] = gdf["INJURY_COLLISIONS"].replace("None", "NO")
 
 #Keeping following columns
 gdf = gdf[[
+    "_id",
     "OCC_MONTH",
     "OCC_DOW",
     "OCC_YEAR",
