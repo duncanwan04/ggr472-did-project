@@ -1,199 +1,199 @@
-_id,Site ID,Count Year,Cordon,Screenline,One-Way Street Direction,Road Classification,Cycling Infrastructure,total_volume,bikelane_usage,sidewalk_usage,roadway_usage,geometry
-1,300001,2022,Inner Cordon,Bloor,Not One-Way,Collector,None,70,0,4,66,POINT (-79.38783926 43.6696164)
-2,300001,2022,Inner Cordon,Bloor,Not One-Way,Collector,None,75,0,15,60,POINT (-79.38783926 43.6696164)
-3,300002,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Sharrows,619,0,26,593,POINT (-79.38926849 43.66918707)
-4,300002,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Sharrows,887,0,50,837,POINT (-79.38926849 43.66918707)
-5,300003,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,None,390,0,29,361,POINT (-79.38295829 43.67062816)
-6,300003,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,None,406,0,24,382,POINT (-79.38295829 43.67062816)
-7,300004,2022,Inner Cordon,Bloor,Not One-Way,Local,None,117,0,16,101,POINT (-79.39820065 43.66746171)
-8,300004,2022,Inner Cordon,Bloor,Not One-Way,Local,None,150,0,8,142,POINT (-79.39820065 43.66746171)
-9,300005,2022,Inner Cordon,Bloor,Not One-Way,Local,None,273,0,30,243,POINT (-79.40139535 43.66687358)
-10,300005,2022,Inner Cordon,Bloor,Not One-Way,Local,None,438,0,39,399,POINT (-79.40139535 43.66687358)
-11,300006,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track,542,510,26,6,POINT (-79.39391875 43.66821706)
-12,300006,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track,483,171,37,275,POINT (-79.39391875 43.66821706)
-13,300007,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,Bike Lane,1030,954,16,60,POINT (-79.39965739 43.6671253)
-14,300007,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,Bike Lane,1157,1035,28,94,POINT (-79.39965739 43.6671253)
-15,300008,2022,Inner Cordon,Bloor,Not One-Way,Local,None,64,0,2,62,POINT (-79.39078766 43.66892294)
-16,300008,2022,Inner Cordon,Bloor,Not One-Way,Local,None,67,0,4,63,POINT (-79.39078766 43.66892294)
-17,300009,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track,517,451,42,24,POINT (-79.38656314 43.66976464)
-18,300009,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track - closed due to construction,588,18,60,510,POINT (-79.38656314 43.66976464)
-19,300038,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,129,0,15,114,POINT (-79.39791271 43.67801474)
-20,300038,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,146,0,9,137,POINT (-79.39791271 43.67801474)
-21,300039,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,Sharrows,102,0,11,91,POINT (-79.43660838 43.66942494)
-22,300039,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,Sharrows,101,0,17,84,POINT (-79.43660838 43.66942494)
-23,300040,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,113,0,43,70,POINT (-79.41458707 43.67380898)
-24,300040,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,158,0,50,108,POINT (-79.41458707 43.67380898)
-25,300041,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,307,253,47,7,POINT (-79.42185024 43.67242363)
-26,300041,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,316,253,37,26,POINT (-79.42185024 43.67242363)
-27,300042,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,460,422,20,18,POINT (-79.40283348 43.6762855)
-28,300042,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,713,681,22,10,POINT (-79.40283348 43.6762855)
-29,300043,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,120,0,49,71,POINT (-79.43290235 43.67013918)
-30,300043,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,152,0,40,112,POINT (-79.43290235 43.67013918)
-31,300044,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,None,147,0,5,142,POINT (-79.41205792 43.67425658)
-32,300044,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,None,168,0,5,163,POINT (-79.41205792 43.67425658)
-33,300045,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,63,0,10,53,POINT (-79.42937332 43.67090999)
-34,300045,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,94,0,20,74,POINT (-79.42937332 43.67090999)
-35,300046,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Collector,Bike Lane,496,329,17,150,POINT (-79.42693041 43.67139458)
-36,300046,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Collector,Bike Lane,505,452,13,40,POINT (-79.42693041 43.67139458)
-37,300047,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,185,0,23,162,POINT (-79.40722083 43.67528594)
-38,300047,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,239,0,31,208,POINT (-79.40722083 43.67528594)
-39,300048,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,Cycle Track,627,605,14,8,POINT (-79.39108131 43.68082318)
-40,300048,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,Cycle Track,744,737,4,3,POINT (-79.39108131 43.68082318)
-41,300049,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track - Bi-Directional,254,253,0,1,POINT (-79.35952213 43.66978616)
-42,300049,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track - Bi-Directional,251,229,0,22,POINT (-79.35952213 43.66978616)
-43,300050,2022,Outer Cordon,Don River,Not One-Way,Collector,Multi-Use Trail,390,385,0,5,POINT (-79.35435752 43.64768505)
-44,300050,2022,Outer Cordon,Don River,Not One-Way,Collector,Multi-Use Trail,461,427,0,34,POINT (-79.35435752 43.64768505)
-45,300051,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,907,896,11,0,POINT (-79.35541638 43.66174631)
-46,300051,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,1039,1025,12,2,POINT (-79.35541638 43.66174631)
-47,300052,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Bike Lane,567,544,17,6,POINT (-79.35629773 43.66453935)
-48,300052,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Bike Lane,686,668,12,6,POINT (-79.35629773 43.66453935)
-49,300053,2022,Outer Cordon,Don River,Not One-Way,Collector,Sharrows,309,0,4,305,POINT (-79.3739884 43.68065565)
-50,300053,2022,Outer Cordon,Don River,Not One-Way,Collector,Sharrows,302,0,4,298,POINT (-79.3739884 43.68065565)
-51,300055,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,75,75,0,0,POINT (-79.35753249 43.66792464)
-52,300055,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,146,146,0,0,POINT (-79.35753249 43.66792464)
-53,300057,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,47,0,18,29,POINT (-79.38239114 43.68074139)
-54,300057,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,58,0,9,49,POINT (-79.38239114 43.68074139)
-55,300058,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,1281,1273,8,0,POINT (-79.36363644 43.6752954)
-56,300058,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,1274,1262,7,5,POINT (-79.36363644 43.6752954)
-57,300059,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,651,0,43,608,POINT (-79.35418645 43.657907)
-58,300059,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,618,0,39,579,POINT (-79.35418645 43.657907)
-59,300060,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,46,46,0,0,POINT (-79.35724764 43.66769429)
-60,300060,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,63,63,0,0,POINT (-79.35724764 43.66769429)
-61,300061,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Multi-Use Trail - Boulevard,83,73,0,10,POINT (-79.36177198 43.67023391)
-62,300061,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Multi-Use Trail - Boulevard,105,103,0,2,POINT (-79.36177198 43.67023391)
-63,300062,2022,Outer Cordon,Dufferin,WB,Local,None,19,0,0,19,POINT (-79.42927555 43.64466914)
-64,300062,2022,Outer Cordon,Dufferin,WB,Local,None,45,0,2,43,POINT (-79.42927555 43.64466914)
-65,300063,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Cycle Track,1390,1349,27,14,POINT (-79.43497829 43.65995474)
-66,300063,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Cycle Track,1337,1299,17,21,POINT (-79.43497829 43.65995474)
-67,300064,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Sharrows,554,0,29,525,POINT (-79.43227572 43.65264234)
-68,300064,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Sharrows,471,0,31,440,POINT (-79.43227572 43.65264234)
-69,300066,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,112,0,0,112,POINT (-79.43400734 43.65719674)
-70,300066,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,97,0,0,97,POINT (-79.43400734 43.65719674)
-71,300067,2022,Outer Cordon,Dufferin,Not One-Way,Minor Arterial,None,749,0,6,743,POINT (-79.43117659 43.64961332)
-72,300067,2022,Outer Cordon,Dufferin,Not One-Way,Minor Arterial,None,582,0,8,574,POINT (-79.43117659 43.64961332)
-73,300068,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,189,0,30,159,POINT (-79.43855319 43.66851132)
-74,300068,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,159,0,52,107,POINT (-79.43855319 43.66851132)
-75,300069,2022,Outer Cordon,Dufferin,Not One-Way,Collector,Sharrows,191,0,9,182,POINT (-79.43742455 43.66593665)
-76,300069,2022,Outer Cordon,Dufferin,Not One-Way,Collector,Sharrows,179,0,5,174,POINT (-79.43742455 43.66593665)
-77,300070,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,101,0,2,99,POINT (-79.42806336 43.64161436)
-78,300070,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,108,0,1,107,POINT (-79.42806336 43.64161436)
-79,300071,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,465,0,13,452,POINT (-79.42697919 43.63901708)
-80,300071,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,302,0,19,283,POINT (-79.42697919 43.63901708)
-81,300072,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,123,0,7,116,POINT (-79.42621706 43.63713142)
-82,300072,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,150,0,10,140,POINT (-79.42621706 43.63713142)
-83,300073,2022,Outer Cordon,Dufferin,Not One-Way,Local,Sharrows,73,0,3,70,POINT (-79.43263644 43.65365989)
-84,300073,2022,Outer Cordon,Dufferin,Not One-Way,Local,Sharrows,88,0,5,83,POINT (-79.43263644 43.65365989)
-85,300074,2022,Outer Cordon,Dufferin,Not One-Way,Trail,Multi-Use Trail,870,870,0,0,POINT (-79.42364997 43.62991179)
-86,300074,2022,Outer Cordon,Dufferin,Not One-Way,Trail,Multi-Use Trail,805,805,0,0,POINT (-79.42364997 43.62991179)
-87,300075,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,59,0,2,57,POINT (-79.42897288 43.64384108)
-88,300075,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,50,0,2,48,POINT (-79.42897288 43.64384108)
-89,300076,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,661,0,55,606,POINT (-79.42835245 43.64229349)
-90,300076,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,657,0,22,635,POINT (-79.42835245 43.64229349)
-91,300077,2022,Outer Cordon,Dufferin,Not One-Way,Other,Bike Lane,37,21,1,15,POINT (-79.42454556 43.63269488)
-92,300077,2022,Outer Cordon,Dufferin,Not One-Way,Other,Bike Lane,40,28,3,9,POINT (-79.42454556 43.63269488)
-93,300078,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,111,0,22,89,POINT (-79.43610881 43.66310269)
-94,300078,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,58,0,15,43,POINT (-79.43610881 43.66310269)
-95,300080,2022,Outer Cordon,Dufferin,EB,Local,None,29,0,0,29,POINT (-79.43032053 43.64754617)
-96,300080,2022,Outer Cordon,Dufferin,EB,Local,None,10,0,0,10,POINT (-79.43032053 43.64754617)
-97,300081,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,98,0,9,89,POINT (-79.43302208 43.65475883)
-98,300081,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,83,0,4,79,POINT (-79.43302208 43.65475883)
-99,300082,2022,Outer Cordon,Dufferin,WB,Local,Bike Lane - Contraflow,225,207,4,14,POINT (-79.42948194 43.64554637)
-100,300082,2022,Outer Cordon,Dufferin,WB,Local,Sharrows,186,1,5,180,POINT (-79.42948194 43.64554637)
-101,300125,2022,Inner Cordon,Jarvis,WB,Major Arterial,Cycle Track,12,6,5,1,POINT (-79.37318244 43.65278095)
-102,300125,2022,Inner Cordon,Jarvis,WB,Major Arterial,Cycle Track,1244,1181,21,42,POINT (-79.37318244 43.65278095)
-103,300126,2022,Inner Cordon,Jarvis,EB,Major Arterial,Cycle Track,968,950,9,9,POINT (-79.37278236 43.6516251)
-104,300126,2022,Inner Cordon,Jarvis,EB,Major Arterial,Cycle Track,6,0,0,6,POINT (-79.37278236 43.6516251)
-105,300127,2022,N/A,Jarvis,Not One-Way,Major Arterial,Cycle Track,1372,1344,26,2,POINT (-79.38109349 43.67153049)
-106,300127,2022,N/A,Jarvis,Not One-Way,Major Arterial,Cycle Track,1776,1757,18,1,POINT (-79.38109349 43.67153049)
-107,300128,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,416,0,40,376,POINT (-79.37722984 43.66231238)
-108,300128,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,438,0,33,405,POINT (-79.37722984 43.66231238)
-109,300129,2022,Inner Cordon,Jarvis,WB,Collector,None,59,0,30,29,POINT (-79.38040459 43.66984195)
-110,300129,2022,Inner Cordon,Jarvis,WB,Collector,None,152,0,24,128,POINT (-79.38040459 43.66984195)
-111,300130,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,586,0,66,520,POINT (-79.37493582 43.65699065)
-112,300130,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,643,0,75,568,POINT (-79.37493582 43.65699065)
-113,300131,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,268,0,47,221,POINT (-79.37138992 43.64809079)
-114,300131,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,274,0,36,238,POINT (-79.37138992 43.64809079)
-115,300132,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,None,261,0,74,187,POINT (-79.37186546 43.64923109)
-116,300132,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,None,248,0,84,164,POINT (-79.37186546 43.64923109)
-117,300133,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,960,871,61,28,POINT (-79.37630091 43.66037067)
-118,300133,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,1213,1163,37,13,POINT (-79.37630091 43.66037067)
-119,300134,2022,Inner Cordon,Jarvis,EB,Collector,None,95,0,2,93,POINT (-79.37948121 43.66783855)
-120,300134,2022,Inner Cordon,Jarvis,EB,Collector,None,80,0,14,66,POINT (-79.37948121 43.66783855)
-121,300135,2022,Inner Cordon,Jarvis,EB,Collector,None,157,0,12,145,POINT (-79.37981887 43.66880653)
-122,300135,2022,Inner Cordon,Jarvis,EB,Collector,None,73,0,38,35,POINT (-79.37981887 43.66880653)
-123,300136,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,456,0,44,412,POINT (-79.37229664 43.65039867)
-124,300136,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,543,0,34,509,POINT (-79.37229664 43.65039867)
-125,300137,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,34,0,8,26,POINT (-79.37288417 43.65230113)
-126,300137,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,43,0,1,42,POINT (-79.37288417 43.65230113)
-127,300138,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,136,0,9,127,POINT (-79.37838052 43.66510986)
-128,300138,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,183,0,17,166,POINT (-79.37838052 43.66510986)
-129,300139,2022,N/A,Jarvis,Not One-Way,Trail,Multi-Use Trail - Boulevard,1013,979,17,17,POINT (-79.36958758 43.64362216)
-130,300139,2022,N/A,Jarvis,Not One-Way,Trail,Multi-Use Trail - Boulevard,1034,924,21,89,POINT (-79.36958758 43.64362216)
-131,300140,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,337,0,44,293,POINT (-79.37363735 43.65363288)
-132,300140,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,374,0,41,333,POINT (-79.37363735 43.65363288)
-133,300141,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,471,431,15,25,POINT (-79.37418987 43.65529013)
-134,300141,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,595,564,15,16,POINT (-79.37418987 43.65529013)
-135,300142,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,748,704,34,10,POINT (-79.37880497 43.66618794)
-136,300142,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,935,884,30,21,POINT (-79.37880497 43.66618794)
-137,300154,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,233,166,33,34,POINT (-79.37713635 43.64156496)
-138,300154,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,215,155,31,29,POINT (-79.37713635 43.64156496)
-139,300155,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,Cycle Track,255,186,32,37,POINT (-79.38294639 43.63989761)
-140,300155,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,Cycle Track,449,385,42,22,POINT (-79.38294639 43.63989761)
-141,300156,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,None,100,0,16,84,POINT (-79.38672963 43.63920794)
-142,300156,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,None,77,0,30,47,POINT (-79.38672963 43.63920794)
-143,300157,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,258,190,37,31,POINT (-79.37492585 43.64233337)
-144,300157,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,257,202,30,25,POINT (-79.37492585 43.64233337)
-145,300158,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,None,194,0,66,128,POINT (-79.38048146 43.64046616)
-146,300158,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,None,145,0,39,106,POINT (-79.38048146 43.64046616)
-147,300162,2022,Inner Cordon,Spadina,EB,Major Arterial,Cycle Track,1873,1841,5,27,POINT (-79.39505519 43.6468621)
-148,300162,2022,Inner Cordon,Spadina,EB,Major Arterial,Cycle Track,24,8,14,2,POINT (-79.39505519 43.6468621)
-149,300163,2022,Inner Cordon,Spadina,WB,Local,None,205,0,24,181,POINT (-79.39838498 43.65499313)
-150,300163,2022,Inner Cordon,Spadina,WB,Local,None,129,0,26,103,POINT (-79.39838498 43.65499313)
-151,300164,2022,Inner Cordon,Spadina,Not One-Way,Other,None,15,0,0,15,POINT (-79.39991224 43.66068031)
-152,300164,2022,Inner Cordon,Spadina,Not One-Way,Other,None,20,0,0,20,POINT (-79.39991224 43.66068031)
-153,300165,2022,N/A,Spadina,Not One-Way,Local,None,199,0,18,181,POINT (-79.40557394 43.67232193)
-154,300165,2022,N/A,Spadina,Not One-Way,Local,None,230,0,20,210,POINT (-79.40557394 43.67232193)
-155,300166,2022,N/A,Spadina,Not One-Way,Major Arterial,Cycle Track,1528,1477,30,21,POINT (-79.40319138 43.6668099)
-156,300166,2022,N/A,Spadina,Not One-Way,Major Arterial,Cycle Track,1765,1724,29,12,POINT (-79.40319138 43.6668099)
-157,300167,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,None,272,7,33,232,POINT (-79.3923397 43.64073932)
-158,300167,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,Bike Lane,258,209,26,23,POINT (-79.3923397 43.64073932)
-159,300168,2022,Inner Cordon,Spadina,EB,Local,None,36,0,3,33,POINT (-79.39616872 43.64952954)
-160,300168,2022,Inner Cordon,Spadina,EB,Local,None,15,0,1,14,POINT (-79.39616872 43.64952954)
-161,300169,2022,Inner Cordon,Spadina,Not One-Way,Local,None,359,0,7,352,POINT (-79.39885094 43.65619882)
-162,300169,2022,Inner Cordon,Spadina,Not One-Way,Local,None,224,0,27,197,POINT (-79.39885094 43.65619882)
-163,300171,2022,Inner Cordon,Spadina,EB,Local,None,162,0,17,145,POINT (-79.39787304 43.65404963)
-164,300171,2022,Inner Cordon,Spadina,EB,Local,None,167,0,32,135,POINT (-79.39787304 43.65404963)
-165,300172,2022,N/A,Spadina,Not One-Way,Minor Arterial,Bike Lane,489,479,7,3,POINT (-79.408619 43.677255)
-166,300172,2022,N/A,Spadina,Not One-Way,Minor Arterial,Bike Lane,358,355,1,2,POINT (-79.408619 43.677255)
-167,300173,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,1132,0,80,1052,POINT (-79.39751848 43.65305504)
-168,300173,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,938,0,89,849,POINT (-79.39751848 43.65305504)
-169,300174,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,None,224,0,55,169,POINT (-79.39328131 43.64287952)
-170,300174,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,None,246,0,85,161,POINT (-79.39328131 43.64287952)
-171,300175,2022,Inner Cordon,Spadina,EB,Local,None,83,0,0,83,POINT (-79.39718087 43.65190709)
-172,300175,2022,Inner Cordon,Spadina,EB,Local,None,69,0,4,65,POINT (-79.39718087 43.65190709)
-173,300176,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,Cycle Track,1248,1190,23,35,POINT (-79.40163482 43.66316152)
-174,300176,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,Cycle Track,1115,1094,10,11,POINT (-79.40163482 43.66316152)
-175,300177,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,762,0,30,732,POINT (-79.39446244 43.64557254)
-176,300177,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,748,0,25,723,POINT (-79.39446244 43.64557254)
-177,300178,2022,N/A,Spadina,Not One-Way,Local,None,315,0,6,309,POINT (-79.40433503 43.6690476)
-178,300178,2022,N/A,Spadina,Not One-Way,Local,None,207,0,18,189,POINT (-79.40433503 43.6690476)
-179,300179,2022,N/A,Spadina,Not One-Way,Trail,Multi-Use Trail - Boulevard,1265,1198,63,4,POINT (-79.3913456 43.63772381)
-180,300179,2022,N/A,Spadina,Not One-Way,Trail,Multi-Use Trail - Boulevard,1252,1160,45,47,POINT (-79.3913456 43.63772381)
-181,300180,2022,Inner Cordon,Spadina,Not One-Way,Local,None,73,0,12,61,POINT (-79.39647147 43.65014927)
-182,300180,2022,Inner Cordon,Spadina,Not One-Way,Local,None,97,0,18,79,POINT (-79.39647147 43.65014927)
-183,300181,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,691,0,38,653,POINT (-79.39583277 43.64886012)
-184,300181,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,668,0,50,618,POINT (-79.39583277 43.64886012)
-185,300182,2022,Inner Cordon,Spadina,WB,Major Arterial,Cycle Track,34,6,27,1,POINT (-79.39545087 43.64792466)
-186,300182,2022,Inner Cordon,Spadina,WB,Major Arterial,Cycle Track,1890,1821,29,40,POINT (-79.39545087 43.64792466)
-187,300183,2022,Inner Cordon,Spadina,WB,Local,None,71,0,22,49,POINT (-79.39684849 43.65097071)
-188,300183,2022,Inner Cordon,Spadina,WB,Local,None,88,0,17,71,POINT (-79.39684849 43.65097071)
-189,300184,2022,Inner Cordon,Spadina,Not One-Way,Local,None,136,0,2,134,POINT (-79.40215375 43.66476765)
-190,300184,2022,Inner Cordon,Spadina,Not One-Way,Local,None,140,0,6,134,POINT (-79.40215375 43.66476765)
-191,300185,2022,Inner Cordon,Spadina,Not One-Way,Local,None,223,0,4,219,POINT (-79.39953706 43.65987191)
-192,300185,2022,Inner Cordon,Spadina,Not One-Way,Local,None,147,0,2,145,POINT (-79.39953706 43.65987191)
-193,300186,2022,Inner Cordon,Spadina,Not One-Way,Local,None,22,0,5,17,POINT (-79.40263215 43.66560814)
-194,300186,2022,Inner Cordon,Spadina,Not One-Way,Local,None,22,0,2,20,POINT (-79.40263215 43.66560814)
-195,300187,2022,Inner Cordon,Spadina,Not One-Way,Collector,None,134,0,9,125,POINT (-79.3924808 43.64457519)
-196,300187,2022,Inner Cordon,Spadina,Not One-Way,Collector,None,160,0,13,147,POINT (-79.3924808 43.64457519)
-197,300188,2022,Inner Cordon,Spadina,Not One-Way,Local,None,96,0,2,94,POINT (-79.40038491 43.66151252)
-198,300188,2022,Inner Cordon,Spadina,Not One-Way,Local,None,151,0,17,134,POINT (-79.40038491 43.66151252)
+_id,Site ID,Count Year,Cordon,Screenline,One-Way Street Direction,Road Classification,Cycling Infrastructure,total_volume,Standard Bicycle Type,Cargo Bicycle Type,Bike Share Type,E-Bicycle Type,bikelane_usage,sidewalk_usage,roadway_usage,geometry,cycling_volume
+1,300001,2022,Inner Cordon,Bloor,Not One-Way,Collector,None,70,52,0,4,7,0,4,66,POINT (-79.38783926 43.6696164),63
+2,300001,2022,Inner Cordon,Bloor,Not One-Way,Collector,None,75,44,0,11,9,0,15,60,POINT (-79.38783926 43.6696164),64
+3,300002,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Sharrows,619,404,1,66,54,0,26,593,POINT (-79.38926849 43.66918707),525
+4,300002,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Sharrows,887,471,12,172,107,0,50,837,POINT (-79.38926849 43.66918707),762
+5,300003,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,None,390,248,5,34,64,0,29,361,POINT (-79.38295829 43.67062816),351
+6,300003,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,None,406,243,7,43,60,0,24,382,POINT (-79.38295829 43.67062816),353
+7,300004,2022,Inner Cordon,Bloor,Not One-Way,Local,None,117,88,0,4,11,0,16,101,POINT (-79.39820065 43.66746171),103
+8,300004,2022,Inner Cordon,Bloor,Not One-Way,Local,None,150,115,0,5,19,0,8,142,POINT (-79.39820065 43.66746171),139
+9,300005,2022,Inner Cordon,Bloor,Not One-Way,Local,None,273,193,6,37,19,0,30,243,POINT (-79.40139535 43.66687358),255
+10,300005,2022,Inner Cordon,Bloor,Not One-Way,Local,None,438,309,10,59,38,0,39,399,POINT (-79.40139535 43.66687358),416
+11,300006,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track,542,353,2,108,30,510,26,6,POINT (-79.39391875 43.66821706),493
+12,300006,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track,483,314,1,97,23,171,37,275,POINT (-79.39391875 43.66821706),435
+13,300007,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,Bike Lane,1030,814,8,136,22,954,16,60,POINT (-79.39965739 43.6671253),980
+14,300007,2022,Inner Cordon,Bloor,Not One-Way,Minor Arterial,Bike Lane,1157,845,6,174,26,1035,28,94,POINT (-79.39965739 43.6671253),1051
+15,300008,2022,Inner Cordon,Bloor,Not One-Way,Local,None,64,48,0,2,11,0,2,62,POINT (-79.39078766 43.66892294),61
+16,300008,2022,Inner Cordon,Bloor,Not One-Way,Local,None,67,44,3,7,11,0,4,63,POINT (-79.39078766 43.66892294),65
+17,300009,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track,517,285,1,54,90,451,42,24,POINT (-79.38656314 43.66976464),430
+18,300009,2022,Inner Cordon,Bloor,Not One-Way,Major Arterial,Cycle Track - closed due to construction,588,326,3,64,135,18,60,510,POINT (-79.38656314 43.66976464),528
+19,300038,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,129,59,3,3,39,0,15,114,POINT (-79.39791271 43.67801474),104
+20,300038,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,146,86,2,3,39,0,9,137,POINT (-79.39791271 43.67801474),130
+21,300039,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,Sharrows,102,85,4,1,5,0,11,91,POINT (-79.43660838 43.66942494),95
+22,300039,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,Sharrows,101,77,4,7,8,0,17,84,POINT (-79.43660838 43.66942494),96
+23,300040,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,113,55,1,10,36,0,43,70,POINT (-79.41458707 43.67380898),102
+24,300040,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,None,158,117,1,16,17,0,50,108,POINT (-79.41458707 43.67380898),151
+25,300041,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,307,227,7,18,24,253,47,7,POINT (-79.42185024 43.67242363),276
+26,300041,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,316,235,2,20,25,253,37,26,POINT (-79.42185024 43.67242363),282
+27,300042,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,460,383,2,29,8,422,20,18,POINT (-79.40283348 43.6762855),422
+28,300042,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,Bike Lane,713,589,5,68,23,681,22,10,POINT (-79.40283348 43.6762855),685
+29,300043,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,120,107,2,4,2,0,49,71,POINT (-79.43290235 43.67013918),115
+30,300043,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,152,132,2,7,6,0,40,112,POINT (-79.43290235 43.67013918),147
+31,300044,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,None,147,112,1,12,18,0,5,142,POINT (-79.41205792 43.67425658),143
+32,300044,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Local,None,168,127,2,19,19,0,5,163,POINT (-79.41205792 43.67425658),167
+33,300045,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,63,40,0,2,17,0,10,53,POINT (-79.42937332 43.67090999),59
+34,300045,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,94,57,1,3,27,0,20,74,POINT (-79.42937332 43.67090999),88
+35,300046,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Collector,Bike Lane,496,304,7,6,156,329,17,150,POINT (-79.42693041 43.67139458),473
+36,300046,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Collector,Bike Lane,505,302,6,13,148,452,13,40,POINT (-79.42693041 43.67139458),469
+37,300047,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,185,137,3,17,16,0,23,162,POINT (-79.40722083 43.67528594),173
+38,300047,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Minor Arterial,None,239,178,1,19,20,0,31,208,POINT (-79.40722083 43.67528594),218
+39,300048,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,Cycle Track,627,398,3,75,93,605,14,8,POINT (-79.39108131 43.68082318),569
+40,300048,2022,Outer Cordon,CP Rail Corridor,Not One-Way,Major Arterial,Cycle Track,744,447,5,122,81,737,4,3,POINT (-79.39108131 43.68082318),655
+41,300049,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track - Bi-Directional,254,227,3,6,6,253,0,1,POINT (-79.35952213 43.66978616),242
+42,300049,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track - Bi-Directional,251,221,4,11,3,229,0,22,POINT (-79.35952213 43.66978616),239
+43,300050,2022,Outer Cordon,Don River,Not One-Way,Collector,Multi-Use Trail,390,341,2,26,2,385,0,5,POINT (-79.35435752 43.64768505),371
+44,300050,2022,Outer Cordon,Don River,Not One-Way,Collector,Multi-Use Trail,461,384,6,46,6,427,0,34,POINT (-79.35435752 43.64768505),442
+45,300051,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,907,697,6,113,29,896,11,0,POINT (-79.35541638 43.66174631),845
+46,300051,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,1039,867,6,117,7,1025,12,2,POINT (-79.35541638 43.66174631),997
+47,300052,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Bike Lane,567,393,13,50,60,544,17,6,POINT (-79.35629773 43.66453935),516
+48,300052,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Bike Lane,686,434,26,58,117,668,12,6,POINT (-79.35629773 43.66453935),635
+49,300053,2022,Outer Cordon,Don River,Not One-Way,Collector,Sharrows,309,260,6,13,15,0,4,305,POINT (-79.3739884 43.68065565),294
+50,300053,2022,Outer Cordon,Don River,Not One-Way,Collector,Sharrows,302,241,4,19,24,0,4,298,POINT (-79.3739884 43.68065565),288
+51,300055,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,75,65,0,1,3,75,0,0,POINT (-79.35753249 43.66792464),69
+52,300055,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,146,139,0,1,0,146,0,0,POINT (-79.35753249 43.66792464),140
+53,300057,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,47,39,2,0,3,0,18,29,POINT (-79.38239114 43.68074139),44
+54,300057,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,58,50,2,1,3,0,9,49,POINT (-79.38239114 43.68074139),56
+55,300058,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,1281,1093,6,99,33,1273,8,0,POINT (-79.36363644 43.6752954),1231
+56,300058,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,Cycle Track,1274,920,11,87,189,1262,7,5,POINT (-79.36363644 43.6752954),1207
+57,300059,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,651,443,0,73,95,0,43,608,POINT (-79.35418645 43.657907),611
+58,300059,2022,Outer Cordon,Don River,Not One-Way,Major Arterial,None,618,394,2,71,117,0,39,579,POINT (-79.35418645 43.657907),584
+59,300060,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,46,19,0,4,17,46,0,0,POINT (-79.35724764 43.66769429),40
+60,300060,2022,Outer Cordon,Don River,Not One-Way,Trail,Multi-Use Trail,63,28,0,5,25,63,0,0,POINT (-79.35724764 43.66769429),58
+61,300061,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Multi-Use Trail - Boulevard,83,63,0,6,7,73,0,10,POINT (-79.36177198 43.67023391),76
+62,300061,2022,Outer Cordon,Don River,Not One-Way,Minor Arterial,Multi-Use Trail - Boulevard,105,69,1,11,9,103,0,2,POINT (-79.36177198 43.67023391),90
+63,300062,2022,Outer Cordon,Dufferin,WB,Local,None,19,17,1,0,0,0,0,19,POINT (-79.42927555 43.64466914),18
+64,300062,2022,Outer Cordon,Dufferin,WB,Local,None,45,41,1,1,2,0,2,43,POINT (-79.42927555 43.64466914),45
+65,300063,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Cycle Track,1390,1030,17,75,199,1349,27,14,POINT (-79.43497829 43.65995474),1321
+66,300063,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Cycle Track,1337,1027,15,68,138,1299,17,21,POINT (-79.43497829 43.65995474),1248
+67,300064,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Sharrows,554,445,0,30,36,0,29,525,POINT (-79.43227572 43.65264234),511
+68,300064,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,Sharrows,471,378,5,30,27,0,31,440,POINT (-79.43227572 43.65264234),440
+69,300066,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,112,95,0,3,9,0,0,112,POINT (-79.43400734 43.65719674),107
+70,300066,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,97,84,0,1,5,0,0,97,POINT (-79.43400734 43.65719674),90
+71,300067,2022,Outer Cordon,Dufferin,Not One-Way,Minor Arterial,None,749,646,4,42,33,0,6,743,POINT (-79.43117659 43.64961332),725
+72,300067,2022,Outer Cordon,Dufferin,Not One-Way,Minor Arterial,None,582,499,3,32,30,0,8,574,POINT (-79.43117659 43.64961332),564
+73,300068,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,189,161,2,6,8,0,30,159,POINT (-79.43855319 43.66851132),177
+74,300068,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,159,127,3,2,20,0,52,107,POINT (-79.43855319 43.66851132),152
+75,300069,2022,Outer Cordon,Dufferin,Not One-Way,Collector,Sharrows,191,155,6,1,20,0,9,182,POINT (-79.43742455 43.66593665),182
+76,300069,2022,Outer Cordon,Dufferin,Not One-Way,Collector,Sharrows,179,144,7,4,16,0,5,174,POINT (-79.43742455 43.66593665),171
+77,300070,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,101,53,1,5,29,0,2,99,POINT (-79.42806336 43.64161436),88
+78,300070,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,108,48,3,4,37,0,1,107,POINT (-79.42806336 43.64161436),92
+79,300071,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,465,285,9,42,97,0,13,452,POINT (-79.42697919 43.63901708),433
+80,300071,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,302,188,3,23,50,0,19,283,POINT (-79.42697919 43.63901708),264
+81,300072,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,123,95,3,6,6,0,7,116,POINT (-79.42621706 43.63713142),110
+82,300072,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,150,126,0,6,7,0,10,140,POINT (-79.42621706 43.63713142),139
+83,300073,2022,Outer Cordon,Dufferin,Not One-Way,Local,Sharrows,73,60,8,0,2,0,3,70,POINT (-79.43263644 43.65365989),70
+84,300073,2022,Outer Cordon,Dufferin,Not One-Way,Local,Sharrows,88,62,14,2,5,0,5,83,POINT (-79.43263644 43.65365989),83
+85,300074,2022,Outer Cordon,Dufferin,Not One-Way,Trail,Multi-Use Trail,870,609,4,65,130,870,0,0,POINT (-79.42364997 43.62991179),808
+86,300074,2022,Outer Cordon,Dufferin,Not One-Way,Trail,Multi-Use Trail,805,544,3,73,135,805,0,0,POINT (-79.42364997 43.62991179),755
+87,300075,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,59,49,2,1,4,0,2,57,POINT (-79.42897288 43.64384108),56
+88,300075,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,50,40,1,3,3,0,2,48,POINT (-79.42897288 43.64384108),47
+89,300076,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,661,479,6,62,78,0,55,606,POINT (-79.42835245 43.64229349),625
+90,300076,2022,Outer Cordon,Dufferin,Not One-Way,Major Arterial,None,657,415,8,71,124,0,22,635,POINT (-79.42835245 43.64229349),618
+91,300077,2022,Outer Cordon,Dufferin,Not One-Way,Other,Bike Lane,37,32,1,3,0,21,1,15,POINT (-79.42454556 43.63269488),36
+92,300077,2022,Outer Cordon,Dufferin,Not One-Way,Other,Bike Lane,40,29,0,0,4,28,3,9,POINT (-79.42454556 43.63269488),33
+93,300078,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,111,96,1,6,2,0,22,89,POINT (-79.43610881 43.66310269),105
+94,300078,2022,Outer Cordon,Dufferin,Not One-Way,Local,None,58,49,1,3,2,0,15,43,POINT (-79.43610881 43.66310269),55
+95,300080,2022,Outer Cordon,Dufferin,EB,Local,None,29,28,0,1,0,0,0,29,POINT (-79.43032053 43.64754617),29
+96,300080,2022,Outer Cordon,Dufferin,EB,Local,None,10,10,0,0,0,0,0,10,POINT (-79.43032053 43.64754617),10
+97,300081,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,98,77,3,7,6,0,9,89,POINT (-79.43302208 43.65475883),93
+98,300081,2022,Outer Cordon,Dufferin,Not One-Way,Collector,None,83,70,0,4,5,0,4,79,POINT (-79.43302208 43.65475883),79
+99,300082,2022,Outer Cordon,Dufferin,WB,Local,Bike Lane - Contraflow,225,198,0,10,2,207,4,14,POINT (-79.42948194 43.64554637),210
+100,300082,2022,Outer Cordon,Dufferin,WB,Local,Sharrows,186,168,1,9,1,1,5,180,POINT (-79.42948194 43.64554637),179
+101,300125,2022,Inner Cordon,Jarvis,WB,Major Arterial,Cycle Track,12,10,0,0,0,6,5,1,POINT (-79.37318244 43.65278095),10
+102,300125,2022,Inner Cordon,Jarvis,WB,Major Arterial,Cycle Track,1244,864,6,229,39,1181,21,42,POINT (-79.37318244 43.65278095),1138
+103,300126,2022,Inner Cordon,Jarvis,EB,Major Arterial,Cycle Track,968,781,0,123,14,950,9,9,POINT (-79.37278236 43.6516251),918
+104,300126,2022,Inner Cordon,Jarvis,EB,Major Arterial,Cycle Track,6,6,0,0,0,0,0,6,POINT (-79.37278236 43.6516251),6
+105,300127,2022,N/A,Jarvis,Not One-Way,Major Arterial,Cycle Track,1372,1150,11,115,44,1344,26,2,POINT (-79.38109349 43.67153049),1320
+106,300127,2022,N/A,Jarvis,Not One-Way,Major Arterial,Cycle Track,1776,1427,8,183,65,1757,18,1,POINT (-79.38109349 43.67153049),1683
+107,300128,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,416,260,2,43,67,0,40,376,POINT (-79.37722984 43.66231238),372
+108,300128,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,438,299,1,50,28,0,33,405,POINT (-79.37722984 43.66231238),378
+109,300129,2022,Inner Cordon,Jarvis,WB,Collector,None,59,33,0,6,16,0,30,29,POINT (-79.38040459 43.66984195),55
+110,300129,2022,Inner Cordon,Jarvis,WB,Collector,None,152,91,0,15,33,0,24,128,POINT (-79.38040459 43.66984195),139
+111,300130,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,586,351,4,80,83,0,66,520,POINT (-79.37493582 43.65699065),518
+112,300130,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,643,463,5,87,24,0,75,568,POINT (-79.37493582 43.65699065),579
+113,300131,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,268,156,1,61,25,0,47,221,POINT (-79.37138992 43.64809079),243
+114,300131,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,274,166,6,46,36,0,36,238,POINT (-79.37138992 43.64809079),254
+115,300132,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,None,261,146,0,31,33,0,74,187,POINT (-79.37186546 43.64923109),210
+116,300132,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,None,248,102,0,34,59,0,84,164,POINT (-79.37186546 43.64923109),195
+117,300133,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,960,643,2,119,88,871,61,28,POINT (-79.37630091 43.66037067),852
+118,300133,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,1213,937,2,129,44,1163,37,13,POINT (-79.37630091 43.66037067),1112
+119,300134,2022,Inner Cordon,Jarvis,EB,Collector,None,95,63,1,13,12,0,2,93,POINT (-79.37948121 43.66783855),89
+120,300134,2022,Inner Cordon,Jarvis,EB,Collector,None,80,64,0,8,5,0,14,66,POINT (-79.37948121 43.66783855),77
+121,300135,2022,Inner Cordon,Jarvis,EB,Collector,None,157,84,1,19,35,0,12,145,POINT (-79.37981887 43.66880653),139
+122,300135,2022,Inner Cordon,Jarvis,EB,Collector,None,73,41,0,13,13,0,38,35,POINT (-79.37981887 43.66880653),67
+123,300136,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,456,243,2,142,32,0,44,412,POINT (-79.37229664 43.65039867),419
+124,300136,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,543,312,3,165,35,0,34,509,POINT (-79.37229664 43.65039867),515
+125,300137,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,34,21,0,3,2,0,8,26,POINT (-79.37288417 43.65230113),26
+126,300137,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,43,26,0,4,1,0,1,42,POINT (-79.37288417 43.65230113),31
+127,300138,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,136,80,3,10,14,0,9,127,POINT (-79.37838052 43.66510986),107
+128,300138,2022,Inner Cordon,Jarvis,Not One-Way,Collector,None,183,93,5,14,28,0,17,166,POINT (-79.37838052 43.66510986),140
+129,300139,2022,N/A,Jarvis,Not One-Way,Trail,Multi-Use Trail - Boulevard,1013,650,9,160,85,979,17,17,POINT (-79.36958758 43.64362216),904
+130,300139,2022,N/A,Jarvis,Not One-Way,Trail,Multi-Use Trail - Boulevard,1034,668,11,170,76,924,21,89,POINT (-79.36958758 43.64362216),925
+131,300140,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,337,237,3,31,43,0,44,293,POINT (-79.37363735 43.65363288),314
+132,300140,2022,Inner Cordon,Jarvis,Not One-Way,Major Arterial,None,374,181,0,46,93,0,41,333,POINT (-79.37363735 43.65363288),320
+133,300141,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,471,324,3,58,38,431,15,25,POINT (-79.37418987 43.65529013),423
+134,300141,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,595,331,2,94,79,564,15,16,POINT (-79.37418987 43.65529013),506
+135,300142,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,748,447,4,83,110,704,34,10,POINT (-79.37880497 43.66618794),644
+136,300142,2022,Inner Cordon,Jarvis,Not One-Way,Minor Arterial,Cycle Track,935,515,6,97,186,884,30,21,POINT (-79.37880497 43.66618794),804
+137,300154,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,233,149,2,44,20,166,33,34,POINT (-79.37713635 43.64156496),215
+138,300154,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,215,104,3,40,36,155,31,29,POINT (-79.37713635 43.64156496),183
+139,300155,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,Cycle Track,255,145,4,37,42,186,32,37,POINT (-79.38294639 43.63989761),228
+140,300155,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,Cycle Track,449,228,1,62,113,385,42,22,POINT (-79.38294639 43.63989761),404
+141,300156,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,None,100,71,0,13,9,0,16,84,POINT (-79.38672963 43.63920794),93
+142,300156,2022,Inner Cordon,Queens Quay,Not One-Way,Collector,None,77,52,1,11,6,0,30,47,POINT (-79.38672963 43.63920794),70
+143,300157,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,258,158,1,42,27,190,37,31,POINT (-79.37492585 43.64233337),228
+144,300157,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,Bike Lane,257,152,0,42,29,202,30,25,POINT (-79.37492585 43.64233337),223
+145,300158,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,None,194,85,1,52,44,0,66,128,POINT (-79.38048146 43.64046616),182
+146,300158,2022,Inner Cordon,Queens Quay,Not One-Way,Minor Arterial,None,145,60,2,35,35,0,39,106,POINT (-79.38048146 43.64046616),132
+147,300162,2022,Inner Cordon,Spadina,EB,Major Arterial,Cycle Track,1873,1416,4,267,96,1841,5,27,POINT (-79.39505519 43.6468621),1783
+148,300162,2022,Inner Cordon,Spadina,EB,Major Arterial,Cycle Track,24,19,0,2,0,8,14,2,POINT (-79.39505519 43.6468621),21
+149,300163,2022,Inner Cordon,Spadina,WB,Local,None,205,123,1,21,45,0,24,181,POINT (-79.39838498 43.65499313),190
+150,300163,2022,Inner Cordon,Spadina,WB,Local,None,129,55,0,29,34,0,26,103,POINT (-79.39838498 43.65499313),118
+151,300164,2022,Inner Cordon,Spadina,Not One-Way,Other,None,15,13,0,1,1,0,0,15,POINT (-79.39991224 43.66068031),15
+152,300164,2022,Inner Cordon,Spadina,Not One-Way,Other,None,20,18,0,0,1,0,0,20,POINT (-79.39991224 43.66068031),19
+153,300165,2022,N/A,Spadina,Not One-Way,Local,None,199,151,10,11,21,0,18,181,POINT (-79.40557394 43.67232193),193
+154,300165,2022,N/A,Spadina,Not One-Way,Local,None,230,170,11,17,22,0,20,210,POINT (-79.40557394 43.67232193),220
+155,300166,2022,N/A,Spadina,Not One-Way,Major Arterial,Cycle Track,1528,978,7,168,267,1477,30,21,POINT (-79.40319138 43.6668099),1420
+156,300166,2022,N/A,Spadina,Not One-Way,Major Arterial,Cycle Track,1765,1236,19,198,175,1724,29,12,POINT (-79.40319138 43.6668099),1628
+157,300167,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,None,272,154,4,57,26,7,33,232,POINT (-79.3923397 43.64073932),241
+158,300167,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,Bike Lane,258,132,2,51,35,209,26,23,POINT (-79.3923397 43.64073932),220
+159,300168,2022,Inner Cordon,Spadina,EB,Local,None,36,25,0,0,9,0,3,33,POINT (-79.39616872 43.64952954),34
+160,300168,2022,Inner Cordon,Spadina,EB,Local,None,15,8,0,0,1,0,1,14,POINT (-79.39616872 43.64952954),9
+161,300169,2022,Inner Cordon,Spadina,Not One-Way,Local,None,359,274,1,24,43,0,7,352,POINT (-79.39885094 43.65619882),342
+162,300169,2022,Inner Cordon,Spadina,Not One-Way,Local,None,224,154,1,20,33,0,27,197,POINT (-79.39885094 43.65619882),208
+163,300171,2022,Inner Cordon,Spadina,EB,Local,None,162,95,4,35,20,0,17,145,POINT (-79.39787304 43.65404963),154
+164,300171,2022,Inner Cordon,Spadina,EB,Local,None,167,99,4,19,24,0,32,135,POINT (-79.39787304 43.65404963),146
+165,300172,2022,N/A,Spadina,Not One-Way,Minor Arterial,Bike Lane,489,351,4,34,63,479,7,3,POINT (-79.408619 43.677255),452
+166,300172,2022,N/A,Spadina,Not One-Way,Minor Arterial,Bike Lane,358,275,3,11,44,355,1,2,POINT (-79.408619 43.677255),333
+167,300173,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,1132,767,0,105,185,0,80,1052,POINT (-79.39751848 43.65305504),1057
+168,300173,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,938,502,1,130,217,0,89,849,POINT (-79.39751848 43.65305504),850
+169,300174,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,None,224,136,1,53,4,0,55,169,POINT (-79.39328131 43.64287952),194
+170,300174,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,None,246,144,1,61,22,0,85,161,POINT (-79.39328131 43.64287952),228
+171,300175,2022,Inner Cordon,Spadina,EB,Local,None,83,64,1,0,8,0,0,83,POINT (-79.39718087 43.65190709),73
+172,300175,2022,Inner Cordon,Spadina,EB,Local,None,69,56,0,2,1,0,4,65,POINT (-79.39718087 43.65190709),59
+173,300176,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,Cycle Track,1248,860,11,172,166,1190,23,35,POINT (-79.40163482 43.66316152),1209
+174,300176,2022,Inner Cordon,Spadina,Not One-Way,Minor Arterial,Cycle Track,1115,661,11,186,210,1094,10,11,POINT (-79.40163482 43.66316152),1068
+175,300177,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,762,351,8,204,137,0,30,732,POINT (-79.39446244 43.64557254),700
+176,300177,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,748,400,6,170,115,0,25,723,POINT (-79.39446244 43.64557254),691
+177,300178,2022,N/A,Spadina,Not One-Way,Local,None,315,273,10,16,3,0,6,309,POINT (-79.40433503 43.6690476),302
+178,300178,2022,N/A,Spadina,Not One-Way,Local,None,207,166,5,17,6,0,18,189,POINT (-79.40433503 43.6690476),194
+179,300179,2022,N/A,Spadina,Not One-Way,Trail,Multi-Use Trail - Boulevard,1265,876,9,189,71,1198,63,4,POINT (-79.3913456 43.63772381),1145
+180,300179,2022,N/A,Spadina,Not One-Way,Trail,Multi-Use Trail - Boulevard,1252,843,13,203,67,1160,45,47,POINT (-79.3913456 43.63772381),1126
+181,300180,2022,Inner Cordon,Spadina,Not One-Way,Local,None,73,44,0,25,1,0,12,61,POINT (-79.39647147 43.65014927),70
+182,300180,2022,Inner Cordon,Spadina,Not One-Way,Local,None,97,50,0,34,2,0,18,79,POINT (-79.39647147 43.65014927),86
+183,300181,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,691,556,3,86,23,0,38,653,POINT (-79.39583277 43.64886012),668
+184,300181,2022,Inner Cordon,Spadina,Not One-Way,Major Arterial,None,668,370,3,107,148,0,50,618,POINT (-79.39583277 43.64886012),628
+185,300182,2022,Inner Cordon,Spadina,WB,Major Arterial,Cycle Track,34,30,0,0,2,6,27,1,POINT (-79.39545087 43.64792466),32
+186,300182,2022,Inner Cordon,Spadina,WB,Major Arterial,Cycle Track,1890,1224,9,324,155,1821,29,40,POINT (-79.39545087 43.64792466),1712
+187,300183,2022,Inner Cordon,Spadina,WB,Local,None,71,54,0,5,6,0,22,49,POINT (-79.39684849 43.65097071),65
+188,300183,2022,Inner Cordon,Spadina,WB,Local,None,88,51,2,4,14,0,17,71,POINT (-79.39684849 43.65097071),71
+189,300184,2022,Inner Cordon,Spadina,Not One-Way,Local,None,136,105,5,15,4,0,2,134,POINT (-79.40215375 43.66476765),129
+190,300184,2022,Inner Cordon,Spadina,Not One-Way,Local,None,140,108,3,14,7,0,6,134,POINT (-79.40215375 43.66476765),132
+191,300185,2022,Inner Cordon,Spadina,Not One-Way,Local,None,223,201,2,11,6,0,4,219,POINT (-79.39953706 43.65987191),220
+192,300185,2022,Inner Cordon,Spadina,Not One-Way,Local,None,147,125,1,15,1,0,2,145,POINT (-79.39953706 43.65987191),142
+193,300186,2022,Inner Cordon,Spadina,Not One-Way,Local,None,22,18,0,1,1,0,5,17,POINT (-79.40263215 43.66560814),20
+194,300186,2022,Inner Cordon,Spadina,Not One-Way,Local,None,22,16,2,1,0,0,2,20,POINT (-79.40263215 43.66560814),19
+195,300187,2022,Inner Cordon,Spadina,Not One-Way,Collector,None,134,81,2,37,8,0,9,125,POINT (-79.3924808 43.64457519),128
+196,300187,2022,Inner Cordon,Spadina,Not One-Way,Collector,None,160,91,3,39,16,0,13,147,POINT (-79.3924808 43.64457519),149
+197,300188,2022,Inner Cordon,Spadina,Not One-Way,Local,None,96,76,3,9,2,0,2,94,POINT (-79.40038491 43.66151252),90
+198,300188,2022,Inner Cordon,Spadina,Not One-Way,Local,None,151,111,2,28,2,0,17,134,POINT (-79.40038491 43.66151252),143

@@ -17,6 +17,10 @@ gdf = gdf[[
     "Road Classification",
     "Cycling Infrastructure",
     "Total Volume",
+    "Standard Bicycle Type",
+    "Cargo Bicycle Type",
+    "Bike Share Type",
+    "E-Bicycle Type",
     "Bike Lane or Trail Infrastructure Use",
     "Sidewalk Infrastructure Use",
     "Roadway Infrastructure Use",
@@ -31,6 +35,14 @@ gdf = gdf.rename(columns={
     "Sidewalk Infrastructure Use": "sidewalk_usage",
     "Roadway Infrastructure Use": "roadway_usage",
     })
+
+#Making new column to count cycling count (since total count includes non-bicycle micromobility)
+gdf["cycling_volume"] = (
+    gdf["Standard Bicycle Type"] +
+    gdf["Cargo Bicycle Type"] +
+    gdf["Bike Share Type"] +
+    gdf["E-Bicycle Type"]
+)
 
 #Turning the data from mulitpoints to points (they only have 1 coordinate to begin with)
 gdf["geometry"] = gdf.geometry.apply(lambda geom: geom.geoms[0])

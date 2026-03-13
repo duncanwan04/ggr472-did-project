@@ -123,18 +123,18 @@ map.on('load', async () => {
     updating_safety_layer("all");
 
     /*--------------------------------------------------------------------
-    CORDON COUNT SECTION
+    TRAFFIC FLOW SECTION
     --------------------------------------------------------------------*/
 
-    map.addSource('cordon_counts', {
+    map.addSource('traffic_flow', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/Cordon%20Counts%20(2022).geojson'
+        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/cleaned_cordon_counts.geojson'
     });
 
     map.addLayer({
-        'id': 'cordon-counts-layer',
+        'id': 'traffic-flow-layer',
         'type': 'circle',
-        'source': 'cordon_counts',
+        'source': 'traffic_flow',
     });
 });
 
@@ -155,8 +155,20 @@ document.getElementById("toggle_safety").addEventListener("click", () => {
     }
 }); 
 
+document.getElementById("toggle_traffic").addEventListener("click", () => {
+    const visibility_status = map.getLayoutProperty('traffic-flow-layer', 'visibility');
+    const traffic_flow_legend = document.getElementById("traffic_flow_legend");
+    if (visibility_status === "none"){
+        map.setLayoutProperty('traffic-flow-layer', 'visibility', 'visible');
+        traffic_flow_legend.style.display = "block";
+    } else {
+       map.setLayoutProperty('traffic-flow-layer', 'visibility', 'none'); 
+       traffic_flow_legend.style.display = "none";
+    }
+}); 
+
 /*--------------------------------------------------------------------
-Safety/Collisions section (Hexgrid)
+SAFETY/COLLISION SECTION (Hexgrid)
 
 Setting up 4 functions
 Adding color scale changes
@@ -379,6 +391,9 @@ map.on('click', 'collision-hexgrids-layer', (e) => {
         .addTo(map); // Show popup on map
 });
 
+/*--------------------------------------------------------------------
+TRAFFIC FLOW SECTION
+--------------------------------------------------------------------*/
 
 
 

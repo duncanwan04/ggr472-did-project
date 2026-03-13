@@ -52,6 +52,13 @@
             <p>
                 Traffic flow data represent cordon counts collected at entry points during a single observation period in 2022
             </p>
+            <label for="biking_count_slider">Minimum Cycling Count</label>
+                <input id="biking_count_input" type="number" min="0" max="100" step="1" value="0">
+                <input id="biking_count_slider" type="range" min="0" max="100" step="1" value="0">
+            <br>
+            <label for="biking_percentage_slider">Minimum Cycling Share (%)</label>
+                <input id="biking_percentage_input" type="number" min="0" max="100" step="1" value="0">
+                <input id="biking_percentage_slider" type="range" min="0" max="100" step="1" value="0">
         </div>     
 
         <div class="panel" id="bikeshare"></div>
@@ -60,7 +67,7 @@
 
     <div id="legend_container" class="legend">
         <div id="safety_legend" class="legend_section"> </div>
-        <div id="cordon_legend" class="legend_section">
+        <div id="traffic_flow_legend" class="legend_section">
             <h4>Cordon Legend</h4>
             <div><span></span> 0</div>
             <div><span></span> 1–2</div>
