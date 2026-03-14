@@ -17,6 +17,7 @@ SETTING UP
 --------------------------------------------------------------------*/
 let collision_data;
 let hex_base;
+let safety_visible = true;
 
 /*--------------------------------------------------------------------
 ADDING GEOCODER
@@ -38,8 +39,12 @@ document.getElementById('return_button').addEventListener('click', () => {
         });
     });
 
-map.on('load', async () => {
 
+map.on("zoom", () => {
+    console.log("Zoom:", map.getZoom());
+});
+
+map.on('load', async () => {
     /*--------------------------------------------------------------------
     SAFETY SECTION
     --------------------------------------------------------------------*/
@@ -135,8 +140,21 @@ map.on('load', async () => {
         'id': 'traffic-flow-layer',
         'type': 'circle',
         'source': 'traffic_flow',
+        'paint': {
+            'circle-radius': [
+                'step',
+                ['zoom'],
+                ['*', ['sqrt', ['get', 'cycling_volume']], 0.2],
+                11, ['*', ['sqrt', ['get', 'cycling_volume']], 0.4],
+                12,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.5],
+                13,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.7],
+                ],
+            'circle-color': '#0a4562',
+            'circle-opacity': 0.5
+            }
     });
 });
+
 
 /*--------------------------------------------------------------------
 TURNING LAYERS ON/OFF
@@ -144,10 +162,15 @@ TURNING LAYERS ON/OFF
 document.getElementById("toggle_safety").addEventListener("click", () => {
     const visibility_status = map.getLayoutProperty('collision-hexgrids-layer', 'visibility');
     const safety_legend = document.getElementById("safety_legend");
-    if (visibility_status === "none"){
+    safety_visible = !safety_visible;
+    
+    if (safety_visible){
         map.setLayoutProperty('collision-hexgrids-layer', 'visibility', 'visible');
         map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'visible');
-        safety_legend.style.display = "block";
+        if (fatalities_button.checked) {
+            map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'visible');
+            safety_legend.style.display = "block";
+        }
     } else {
        map.setLayoutProperty('collision-hexgrids-layer', 'visibility', 'none'); 
        map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'none');
@@ -223,16 +246,16 @@ function building_hexgrids(collisions_filtered){
     /// get all collision counts, to know how to choropleth color the data
         const counts = hexdata.features.map(f => f.properties.collision_count_hex);
 
-        // build frequency distribution
-        const distribution = {};
+        // // build frequency distribution
+        // const distribution = {};
 
-        counts.forEach(c => {
-            distribution[c] = (distribution[c] || 0) + 1;
-        });
+        // counts.forEach(c => {
+        //     distribution[c] = (distribution[c] || 0) + 1;
+        // });
 
-        // print nicely
-        console.log("collision count distribution:");
-        console.table(distribution);
+        // // print nicely
+        // console.log("collision count distribution:");
+        // console.table(distribution);
 
     return hexdata
 }
@@ -314,7 +337,7 @@ function update_legend(selected_year) {
     }
 }
 
-/// function 5: using hexgrids we built from function 2, we update the layer in the map section above 
+/// function 5: using hexgrids we built from function 2, we update the layer and colors in the map section above 
 function updating_safety_layer(selected_year){
     const collisions_filtered = filter_collisions_by_year(selected_year);
     const hexgrids = building_hexgrids(collisions_filtered);
@@ -324,6 +347,7 @@ function updating_safety_layer(selected_year){
     const fatal_collisions_filtered = filter_fatal_collisions_by_year(selected_year);
     map.getSource("fatal_collision_points").setData(fatal_collisions_filtered);
 
+    /// to update the color scale 
     if (selected_year === "all") {
         map.setPaintProperty("collision-hexgrids-layer", "fill-color", all_scale);
     } else {
@@ -342,7 +366,7 @@ year_dropdown.addEventListener("change", function () {
 /// Shows fatal incidents (on/off button)
 const fatalities_button = document.getElementById('fatalities_button');
 fatalities_button.addEventListener('change', () =>{
-    if (fatalities_button.checked) {
+    if (fatalities_button.checked && safety_visible) {
         map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'visible');
     } else {
     map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'none');
@@ -394,6 +418,36 @@ map.on('click', 'collision-hexgrids-layer', (e) => {
 /*--------------------------------------------------------------------
 TRAFFIC FLOW SECTION
 --------------------------------------------------------------------*/
+const bikelane_percentage_slider = document.getElementById("bikelane_percentage_slider");
+const bikelane_percentage_input = document.getElementById("bikelane_percentage_input");
 
+    bikelane_percentage_input.addEventListener('input', () =>{
+        bikelane_percentage_slider = bikelane_percentage_input.value
+    })
+
+    bikelane_percentage_slider.addEventListener('input', () =>{
+        bikelane_percentage_input.value = bikelane_percentage_slider.value
+    })
+
+const cycling_volume_slider = document.getElementById("cycling_volume_slider");
+const cycling_volume_input = document.getElementById("cycling_volume_input");
+
+    function traffic_flow_filter(){
+        map.setFilter('traffic-flow-layer', 
+            ["all",
+                ['>=', ['get', 'cycling_volume'], parseFloat(cycling_volume_slider.value)],
+            ]
+        );
+    }
+
+    cycling_volume_input.addEventListener('input', () =>{
+        cycling_volume_slider.value = cycling_volume_input.value;
+        traffic_flow_filter();
+    })
+
+    cycling_volume_slider.addEventListener('input', () =>{
+        cycling_volume_input.value = cycling_volume_slider.value;
+        traffic_flow_filter();
+    })
 
 

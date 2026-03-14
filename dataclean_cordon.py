@@ -1,5 +1,6 @@
 
 import geopandas as gpd
+import numpy as np
 
 gdf = gpd.read_file("/Users/duncan/Desktop/GGR472/Group Project/Raw File/Cordon Counts (2022).geojson")
 
@@ -27,7 +28,6 @@ gdf = gdf[[
     "geometry"
 ]]
 
-
 #Renaming Columns
 gdf = gdf.rename(columns={
     "Total Volume": "total_volume",
@@ -42,6 +42,14 @@ gdf["cycling_volume"] = (
     gdf["Cargo Bicycle Type"] +
     gdf["Bike Share Type"] +
     gdf["E-Bicycle Type"]
+)
+
+#Making new column to find proportion of microbility users that use bikelane
+gdf["total_volume"] = gdf["total_volume"].astype("int32")
+
+gdf["bikelane_usage_percentage"] = np.where(
+    (gdf["Cycling Infrastructure"] == "None"), np.nan,
+    gdf["bikelane_usage"] / gdf["total_volume"] * 100
 )
 
 #Turning the data from mulitpoints to points (they only have 1 coordinate to begin with)
