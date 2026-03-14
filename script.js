@@ -149,7 +149,19 @@ map.on('load', async () => {
                 12,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.5],
                 13,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.7],
                 ],
-            'circle-color': '#0a4562',
+            'circle-color': [
+                'case',
+                ['==', ['get', 'bikelane_usage_percentage'], null],
+                '#6E6B6B', 
+
+                ['step',
+                ['get', 'bikelane_usage_percentage'],
+                "#e5f5e0",
+                0.0001, "#a1d99b",
+                50, "#74c476",
+                80, '#31a354',
+                95, '#006d2c']
+            ],
             'circle-opacity': 0.5
             }
     });
@@ -418,36 +430,27 @@ map.on('click', 'collision-hexgrids-layer', (e) => {
 /*--------------------------------------------------------------------
 TRAFFIC FLOW SECTION
 --------------------------------------------------------------------*/
-const bikelane_percentage_slider = document.getElementById("bikelane_percentage_slider");
-const bikelane_percentage_input = document.getElementById("bikelane_percentage_input");
 
-    bikelane_percentage_input.addEventListener('input', () =>{
-        bikelane_percentage_slider = bikelane_percentage_input.value
-    })
+/// cyling volume slider/filter
+    const cycling_volume_slider = document.getElementById("cycling_volume_slider");
+    const cycling_volume_input = document.getElementById("cycling_volume_input");
 
-    bikelane_percentage_slider.addEventListener('input', () =>{
-        bikelane_percentage_input.value = bikelane_percentage_slider.value
-    })
+        function traffic_flow_filter(){
+            map.setFilter('traffic-flow-layer', 
+                ["all",
+                    ['>=', ['get', 'cycling_volume'], parseFloat(cycling_volume_slider.value)],
+                ]
+            );
+        }
 
-const cycling_volume_slider = document.getElementById("cycling_volume_slider");
-const cycling_volume_input = document.getElementById("cycling_volume_input");
+        cycling_volume_input.addEventListener('input', () =>{
+            cycling_volume_slider.value = cycling_volume_input.value;
+            traffic_flow_filter();
+        })
 
-    function traffic_flow_filter(){
-        map.setFilter('traffic-flow-layer', 
-            ["all",
-                ['>=', ['get', 'cycling_volume'], parseFloat(cycling_volume_slider.value)],
-            ]
-        );
-    }
-
-    cycling_volume_input.addEventListener('input', () =>{
-        cycling_volume_slider.value = cycling_volume_input.value;
-        traffic_flow_filter();
-    })
-
-    cycling_volume_slider.addEventListener('input', () =>{
-        cycling_volume_input.value = cycling_volume_slider.value;
-        traffic_flow_filter();
-    })
+        cycling_volume_slider.addEventListener('input', () =>{
+            cycling_volume_input.value = cycling_volume_slider.value;
+            traffic_flow_filter();
+        })
 
 

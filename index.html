@@ -55,10 +55,6 @@
             <label for="cycling_volume_slider">Cycling Count Filter</label>
                 <input id="cycling_volume_input" type="number" min="0" max="1900" step="1" value="0">
                 <input id="cycling_volume_slider" type="range" min="0" max="1900" step="1" value="0">
-            <br>
-            <label for="bikelane_percentage_slider">Bike Lane Share of Micromobility (%)</label>
-                <input id="bikelane_percentage_input" type="number" min="0" max="100" step="1" value="0">
-                <input id="bikelane_percentage_slider" type="range" min="0" max="100" step="1" value="0">
         </div>     
 
         <div class="panel" id="bikeshare"></div>
@@ -68,12 +64,23 @@
     <div id="legend_container" class="legend">
         <div id="safety_legend" class="legend_section"> </div>
         <div id="traffic_flow_legend" class="legend_section">
-            <h4>Cycling Flow Count <span></span></h4>
+            <h4>Micromobility Using Bike Lane/Trail (%)</h4>
+            <div><span></span>No Cyling Infrastructure</div>
+            <div><span></span>0%</div>
+            <div><span></span>>0 – 50%</div>
+            <div><span></span>50 – 80%</div>
+            <div><span></span>80 – 95%</div>
+            <div><span></span>95 – 100%</div>
+            <p>Circle size: Total Cycling Cordon Counts 2022 (only cycling, excluding other forms of micromobility)</p>
         </div>
     </div>
 
     <button id="return_button" class="return_button">Return</button>
-    <div id="map" class="map-container"></div>
+    <div id="map" class="map-container">
+        <div id="traffice_flow_hover" class="traffice_flow_hover">
+            <h2>This Entry/Exit Point</h2>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
