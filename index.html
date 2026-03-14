@@ -45,7 +45,9 @@
 
 
 
-        <div class="panel" id="infrastructure"></div>
+        <div class="panel" id="infrastructure">
+            <h2>Infrastructure     <button id="toggle_infrastructure">On/Off</button></h2>
+        </div>
 
         <div class="panel" id="traffic-flow">
             <h2>Traffic Flow     <button id="toggle_traffic">On/Off</button></h2>
@@ -57,8 +59,9 @@
                 <input id="cycling_volume_slider" type="range" min="0" max="1900" step="1" value="0">
         </div>     
 
-        <div class="panel" id="bikeshare"></div>
-
+        <div class="panel" id="bikeshare">
+            <h2>Bikeshare Stations     <button id="toggle_bikeshare">On/Off</button></h2>
+        </div>
     </div>
 
     <div id="legend_container" class="legend">
@@ -72,6 +75,12 @@
             <div><span></span>80 – 95%</div>
             <div><span></span>95 – 100%</div>
             <p>Circle size: Total Cycling Cordon Counts 2022 (only cycling, excluding other forms of micromobility)</p>
+        <div id="infrastructure_legend" class="legend_section">
+            <h4>Infrastructure</h4>
+        </div>
+        <div id="bikeshare_legend" class="legend_section">
+            <h4>Bikeshare Stations</h4>
+        </div>
         </div>
     </div>
 

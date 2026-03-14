@@ -165,6 +165,35 @@ map.on('load', async () => {
             'circle-opacity': 0.5
             }
     });
+
+    /*--------------------------------------------------------------------
+    INFRASTRUCTURE LAYER 
+    --------------------------------------------------------------------*/
+    map.addSource('infrastructure', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/cycling_infrastructure.geojson'
+    });
+
+    map.addLayer({
+        'id': 'infrastructure-layer',
+        'type': 'circle',
+        'source': 'infrastructure',
+    });
+
+    /*--------------------------------------------------------------------
+    BIKESHARE LAYER
+    --------------------------------------------------------------------*/
+    map.addSource('bikeshare', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/bikeshare_stations.geojson'
+    });
+
+    map.addLayer({
+        'id': 'bikeshare-layer',
+        'type': 'circle',
+        'source': 'bikeshare',
+    });
+
 });
 
 
@@ -198,6 +227,30 @@ document.getElementById("toggle_traffic").addEventListener("click", () => {
         traffic_flow_legend.style.display = "block";
     } else {
        map.setLayoutProperty('traffic-flow-layer', 'visibility', 'none'); 
+       traffic_flow_legend.style.display = "none";
+    }
+}); 
+
+document.getElementById("toggle_infrastructure").addEventListener("click", () => {
+    const visibility_status = map.getLayoutProperty('infrastructure-layer', 'visibility');
+    const traffic_flow_legend = document.getElementById("infrastructure_legend");
+    if (visibility_status === "none"){
+        map.setLayoutProperty('infrastructure-layer', 'visibility', 'visible');
+        traffic_flow_legend.style.display = "block";
+    } else {
+       map.setLayoutProperty('infrastructure-layer', 'visibility', 'none'); 
+       traffic_flow_legend.style.display = "none";
+    }
+}); 
+
+document.getElementById("toggle_bikeshare").addEventListener("click", () => {
+    const visibility_status = map.getLayoutProperty('bikeshare-layer', 'visibility');
+    const traffic_flow_legend = document.getElementById("bikeshare_legend");
+    if (visibility_status === "none"){
+        map.setLayoutProperty('bikeshare-layer', 'visibility', 'visible');
+        traffic_flow_legend.style.display = "block";
+    } else {
+       map.setLayoutProperty('bikeshare-layer', 'visibility', 'none'); 
        traffic_flow_legend.style.display = "none";
     }
 }); 
