@@ -171,12 +171,12 @@ map.on('load', async () => {
     --------------------------------------------------------------------*/
     map.addSource('infrastructure', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/cycling_infrastructure.geojson'
+        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/cycling_network.geojson'
     });
 
     map.addLayer({
         'id': 'infrastructure-layer',
-        'type': 'circle',
+        'type': 'line',
         'source': 'infrastructure',
     });
 
