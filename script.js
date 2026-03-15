@@ -222,12 +222,15 @@ document.getElementById("toggle_safety").addEventListener("click", () => {
 document.getElementById("toggle_traffic").addEventListener("click", () => {
     const visibility_status = map.getLayoutProperty('traffic-flow-layer', 'visibility');
     const traffic_flow_legend = document.getElementById("traffic_flow_legend");
+    const traffic_flow_hover = document.getElementById("traffic_flow_hover");
     if (visibility_status === "none"){
         map.setLayoutProperty('traffic-flow-layer', 'visibility', 'visible');
         traffic_flow_legend.style.display = "block";
+        traffic_flow_hover.style.display = "block";
     } else {
        map.setLayoutProperty('traffic-flow-layer', 'visibility', 'none'); 
        traffic_flow_legend.style.display = "none";
+       traffic_flow_hover.style.display = "none";
     }
 }); 
 
@@ -505,5 +508,24 @@ TRAFFIC FLOW SECTION
             cycling_volume_input.value = cycling_volume_slider.value;
             traffic_flow_filter();
         })
+
+/// Hover
+    map.on('mousemove', 'traffic-flow-layer', (e) => {
+        const count = e.features[0].properties.cycling_volume;
+        const bikelane_usage = e.features[0].properties.bikelane_usage_percentage;
+        let usage_text = isNaN(bikelane_usage) 
+            ? "No Cycling Infrastructure Here" 
+            : bikelane_usage.toFixed(1) + "%";
+        document.getElementById("traffic_flow_hover").innerHTML =
+            "<h2>This Entry/Exit Point</h2>" 
+            + "<h3>Cycling Count: " + count + "</h3>"
+            + "<h3>Bikelane Usage: " + usage_text + "</h3>";
+        /// innerHTML replaces the content of the div i specified with the ID
+    });
+
+    map.on('mouseleave', "traffic-flow-layer", () => {
+        document.getElementById("traffic_flow_hover").innerHTML =
+            "<h2>This Entry/Exit Point</h2>";
+    });
 
 
