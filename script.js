@@ -178,7 +178,28 @@ map.on('load', async () => {
         'id': 'infrastructure-layer',
         'type': 'line',
         'source': 'infrastructure',
-    });
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-width': 2,
+            'line-color': [
+                'match',
+                ['get', 'INFRA_HIGHORDER'],
+                // Sharrows
+                ['Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
+                'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'], '#f4a261',
+                // On-Road
+                ['Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'], '#2196F3',
+                // Physically Separated
+                ['Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'], '#4CAF50',
+                // Off-Road (everything else)
+                '#9C27B0'
+            ]
+        }
+   });
 
     /*--------------------------------------------------------------------
     BIKESHARE LAYER
@@ -528,4 +549,56 @@ TRAFFIC FLOW SECTION
             "<h2>This Entry/Exit Point</h2>";
     });
 
+/*--------------------------------------------------------------------
+INFRASTRUCTURE SECTION
+--------------------------------------------------------------------*/
 
+/// Sharrow category values from INFRA_HIGHORDER field
+const sharrow_types = [
+    'Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
+    'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'
+];
+
+/// On-Road category values
+const onroad_types = [
+    'Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'
+];
+
+/// Physically Separated category values
+const separated_types = [
+    'Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'
+];
+
+/// Off-Road category values
+const offroad_types = [
+    'Multi-Use Trail', 'Multi-Use Trail - Boulevard', 'Multi-Use Trail - Connector',
+    'Multi-Use Trail - Entrance', 'Multi-Use Trail - Existing Connector', 'Park Road'
+];
+
+/// Builds a combined filter based on which checkboxes are checked
+function update_infrastructure_filter() {
+    const show_sharrows   = document.getElementById('cb-sharrows').checked;
+    const show_onroad     = document.getElementById('cb-onroad').checked;
+    const show_separated  = document.getElementById('cb-separated').checked;
+    const show_offroad    = document.getElementById('cb-offroad').checked;
+
+    /// Collect which INFRA_HIGHORDER values should be visible
+    let visible_types = [];
+    if (show_sharrows)  visible_types = visible_types.concat(sharrow_types);
+    if (show_onroad)    visible_types = visible_types.concat(onroad_types);
+    if (show_separated) visible_types = visible_types.concat(separated_types);
+    if (show_offroad)   visible_types = visible_types.concat(offroad_types);
+
+    /// If nothing is checked, show nothing; otherwise filter to matching types
+    if (visible_types.length === 0) {
+        map.setFilter('infrastructure-layer', ['==', ['get', 'INFRA_HIGHORDER'], '']);
+    } else {
+        map.setFilter('infrastructure-layer', ['in', ['get', 'INFRA_HIGHORDER'], ['literal', visible_types]]);
+    }
+}
+
+/// Attach event listener to each checkbox
+document.getElementById('cb-sharrows').addEventListener('change', update_infrastructure_filter);
+document.getElementById('cb-onroad').addEventListener('change', update_infrastructure_filter);
+document.getElementById('cb-separated').addEventListener('change', update_infrastructure_filter);
+document.getElementById('cb-offroad').addEventListener('change', update_infrastructure_filter);

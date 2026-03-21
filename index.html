@@ -47,6 +47,22 @@
 
         <div class="panel" id="infrastructure">
             <h2>Infrastructure     <button id="toggle_infrastructure">On/Off</button></h2>
+            <label>
+                <input type="checkbox" id="cb-sharrows" checked>
+                Sharrows
+            </label><br>
+            <label>
+                <input type="checkbox" id="cb-onroad" checked>
+                On-Road Bike Lane
+            </label><br>
+            <label>
+                <input type="checkbox" id="cb-separated" checked>
+                Physically Separated
+            </label><br>
+            <label>
+                <input type="checkbox" id="cb-offroad" checked>
+                Off-Road / Trail
+            </label>
         </div>
 
         <div class="panel" id="traffic-flow">
@@ -77,6 +93,10 @@
             <p>Circle size: Total Cycling Cordon Counts 2022 (only cycling, excluding other forms of micromobility)</p>
         <div id="infrastructure_legend" class="legend_section">
             <h4>Infrastructure</h4>
+            <div><span class="infra-line" style="background:#f4a261;"></span>Sharrows</div>
+            <div><span class="infra-line" style="background:#2196F3;"></span>On-Road Bike Lane</div>
+            <div><span class="infra-line" style="background:#4CAF50;"></span>Physically Separated</div>
+            <div><span class="infra-line" style="background:#9C27B0;"></span>Off-Road / Trail</div>
         </div>
         <div id="bikeshare_legend" class="legend_section">
             <h4>Bikeshare Stations</h4>
