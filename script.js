@@ -18,6 +18,8 @@ SETTING UP
 let collision_data;
 let hex_base;
 let safety_visible = true;
+let infrastructure_data;
+let current_hexgrid;
 
 /*--------------------------------------------------------------------
 ADDING GEOCODER
@@ -45,6 +47,89 @@ map.on("zoom", () => {
 });
 
 map.on('load', async () => {
+
+    /*--------------------------------------------------------------------
+    TRAFFIC FLOW SECTION
+    --------------------------------------------------------------------*/
+
+    map.addSource('traffic_flow', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/cleaned_cordon_counts.geojson'
+    });
+
+    map.addLayer({
+        'id': 'traffic-flow-layer',
+        'type': 'circle',
+        'source': 'traffic_flow',
+        'paint': {
+            'circle-radius': [
+                'step',
+                ['zoom'],
+                ['*', ['sqrt', ['get', 'cycling_volume']], 0.2],
+                11, ['*', ['sqrt', ['get', 'cycling_volume']], 0.4],
+                12,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.5],
+                13,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.7],
+                ],
+            'circle-color': [
+                'case',
+                ['==', ['get', 'bikelane_usage_percentage'], null],
+                '#6E6B6B', 
+
+                ['step',
+                ['get', 'bikelane_usage_percentage'],
+                "#e5f5e0",
+                0.0001, "#a1d99b",
+                50, "#74c476",
+                80, '#31a354',
+                95, '#006d2c']
+            ],
+            'circle-opacity': 0.5
+            }
+    });
+
+    /*--------------------------------------------------------------------
+    INFRASTRUCTURE LAYER 
+    --------------------------------------------------------------------*/
+    const infrastructure_response = await fetch(
+        'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/cycling_network.geojson'
+    );
+    
+    infrastructure_data = await infrastructure_response.json();
+    
+    map.addSource('infrastructure', {
+        type: 'geojson',
+        data: infrastructure_data
+    });
+
+    console.log(infrastructure_data);
+
+    map.addLayer({
+        'id': 'infrastructure-layer',
+        'type': 'line',
+        'source': 'infrastructure',
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-width': 2,
+            'line-color': [
+                'match',
+                ['get', 'INFRA_HIGHORDER'],
+                // Sharrows
+                ['Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
+                'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'], '#f4a261',
+                // On-Road
+                ['Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'], '#2196F3',
+                // Physically Separated
+                ['Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'], '#4CAF50',
+                // Off-Road (everything else)
+                '#9C27B0'
+            ]
+        }
+   });
+
     /*--------------------------------------------------------------------
     SAFETY SECTION
     --------------------------------------------------------------------*/
@@ -76,6 +161,11 @@ map.on('load', async () => {
         bboxscaled.geometry.coordinates[0][2][1],
     ];
     hex_base = turf.hexGrid(bboxcoords, 0.25, {units: "kilometers"});
+    hex_base = classify_infrastructure(hex_base, infrastructure_data);
+
+    console.log(
+    hex_base.features.slice(0, 10).map(f => f.properties.infra_context)
+    );
 
     console.log("collision_data:", collision_data);
 
@@ -125,82 +215,6 @@ map.on('load', async () => {
         }
     });
 
-    updating_safety_layer("all");
-
-    /*--------------------------------------------------------------------
-    TRAFFIC FLOW SECTION
-    --------------------------------------------------------------------*/
-
-    map.addSource('traffic_flow', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/cleaned_cordon_counts.geojson'
-    });
-
-    map.addLayer({
-        'id': 'traffic-flow-layer',
-        'type': 'circle',
-        'source': 'traffic_flow',
-        'paint': {
-            'circle-radius': [
-                'step',
-                ['zoom'],
-                ['*', ['sqrt', ['get', 'cycling_volume']], 0.2],
-                11, ['*', ['sqrt', ['get', 'cycling_volume']], 0.4],
-                12,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.5],
-                13,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.7],
-                ],
-            'circle-color': [
-                'case',
-                ['==', ['get', 'bikelane_usage_percentage'], null],
-                '#6E6B6B', 
-
-                ['step',
-                ['get', 'bikelane_usage_percentage'],
-                "#e5f5e0",
-                0.0001, "#a1d99b",
-                50, "#74c476",
-                80, '#31a354',
-                95, '#006d2c']
-            ],
-            'circle-opacity': 0.5
-            }
-    });
-
-    /*--------------------------------------------------------------------
-    INFRASTRUCTURE LAYER 
-    --------------------------------------------------------------------*/
-    map.addSource('infrastructure', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/cycling_network.geojson'
-    });
-
-    map.addLayer({
-        'id': 'infrastructure-layer',
-        'type': 'line',
-        'source': 'infrastructure',
-        'layout': {
-            'visibility': 'visible',
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-width': 2,
-            'line-color': [
-                'match',
-                ['get', 'INFRA_HIGHORDER'],
-                // Sharrows
-                ['Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
-                'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'], '#f4a261',
-                // On-Road
-                ['Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'], '#2196F3',
-                // Physically Separated
-                ['Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'], '#4CAF50',
-                // Off-Road (everything else)
-                '#9C27B0'
-            ]
-        }
-   });
-
     /*--------------------------------------------------------------------
     BIKESHARE LAYER
     --------------------------------------------------------------------*/
@@ -215,7 +229,35 @@ map.on('load', async () => {
         'source': 'bikeshare',
     });
 
-});
+
+    /*--------------------------------------------------------------------
+    COLLIION X INFRASTRUCTURE LAYER
+    --------------------------------------------------------------------*/
+
+    map.addSource("hotspots", {
+        type: "geojson",
+        data: {
+            type: "FeatureCollection",
+            features: []
+        }
+    });
+
+    map.addLayer({
+        id: "hotspots-layer",
+        type: "fill",
+        source: "hotspots",
+        layout: {
+            visibility: "visible"
+        },
+        paint: {
+        "fill-color": "#ff0000",
+        "fill-opacity": 0.35,
+        "fill-outline-color": "#ff0000"
+        }
+    });
+
+        updating_safety_layer("all");
+    });
 
 
 /*--------------------------------------------------------------------
@@ -257,27 +299,204 @@ document.getElementById("toggle_traffic").addEventListener("click", () => {
 
 document.getElementById("toggle_infrastructure").addEventListener("click", () => {
     const visibility_status = map.getLayoutProperty('infrastructure-layer', 'visibility');
-    const traffic_flow_legend = document.getElementById("infrastructure_legend");
+    const infrastructure_legend = document.getElementById("infrastructure_legend");
     if (visibility_status === "none"){
         map.setLayoutProperty('infrastructure-layer', 'visibility', 'visible');
-        traffic_flow_legend.style.display = "block";
+        infrastructure_legend.style.display = "block";
     } else {
        map.setLayoutProperty('infrastructure-layer', 'visibility', 'none'); 
-       traffic_flow_legend.style.display = "none";
+       infrastructure_legend.style.display = "none";
     }
 }); 
 
 document.getElementById("toggle_bikeshare").addEventListener("click", () => {
     const visibility_status = map.getLayoutProperty('bikeshare-layer', 'visibility');
-    const traffic_flow_legend = document.getElementById("bikeshare_legend");
+    const bikeshare_legend = document.getElementById("bikeshare_legend");
     if (visibility_status === "none"){
         map.setLayoutProperty('bikeshare-layer', 'visibility', 'visible');
-        traffic_flow_legend.style.display = "block";
+        bikeshare_legend.style.display = "block";
     } else {
        map.setLayoutProperty('bikeshare-layer', 'visibility', 'none'); 
-       traffic_flow_legend.style.display = "none";
+       bikeshare_legend.style.display = "none";
     }
 }); 
+
+document.getElementById("toggle_hotspots").addEventListener("click", () => {
+    const visibility_status = map.getLayoutProperty('hotspots-layer', 'visibility');
+    const hotspots_legend = document.getElementById("hotspots_legend");
+    if (visibility_status === "none"){
+        map.setLayoutProperty('hotspots-layer', 'visibility', 'visible');
+        hotspots_legend.style.display = "block";
+    } else {
+       map.setLayoutProperty('hotspots-layer', 'visibility', 'none'); 
+       hotspots_legend.style.display = "none";
+    }
+}); 
+
+/*--------------------------------------------------------------------
+INFRASTRUCTURE SECTION
+--------------------------------------------------------------------*/
+
+/// Sharrow category values from INFRA_HIGHORDER field
+const sharrow_types = [
+    'Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
+    'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'
+];
+
+/// On-Road category values
+const onroad_types = [
+    'Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'
+];
+
+/// Physically Separated category values
+const separated_types = [
+    'Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'
+];
+
+/// Off-Road category values
+const offroad_types = [
+    'Multi-Use Trail', 'Multi-Use Trail - Boulevard', 'Multi-Use Trail - Connector',
+    'Multi-Use Trail - Entrance', 'Multi-Use Trail - Existing Connector', 'Park Road'
+];
+
+/// Builds a combined filter based on which checkboxes are checked
+function update_infrastructure_filter() {
+    const show_sharrows   = document.getElementById('cb-sharrows').checked;
+    const show_onroad     = document.getElementById('cb-onroad').checked;
+    const show_separated  = document.getElementById('cb-separated').checked;
+    const show_offroad    = document.getElementById('cb-offroad').checked;
+
+    /// Collect which INFRA_HIGHORDER values should be visible
+    let visible_types = [];
+    if (show_sharrows)  visible_types = visible_types.concat(sharrow_types);
+    if (show_onroad)    visible_types = visible_types.concat(onroad_types);
+    if (show_separated) visible_types = visible_types.concat(separated_types);
+    if (show_offroad)   visible_types = visible_types.concat(offroad_types);
+
+    /// If nothing is checked, show nothing; otherwise filter to matching types
+    if (visible_types.length === 0) {
+        map.setFilter('infrastructure-layer', ['==', ['get', 'INFRA_HIGHORDER'], '']);
+    } else {
+        map.setFilter('infrastructure-layer', ['in', ['get', 'INFRA_HIGHORDER'], ['literal', visible_types]]);
+    }
+}
+
+/// Attach event listener to each checkbox
+document.getElementById('cb-sharrows').addEventListener('change', update_infrastructure_filter);
+document.getElementById('cb-onroad').addEventListener('change', update_infrastructure_filter);
+document.getElementById('cb-separated').addEventListener('change', update_infrastructure_filter);
+document.getElementById('cb-offroad').addEventListener('change', update_infrastructure_filter);
+
+/*--------------------------------------------------------------------
+COLLISION AND INFRASTRUCTURE CROSSOVER FUNCTION 1
+--------------------------------------------------------------------*/
+
+function get_infra_rank(type) {
+    if (sharrow_types.includes(type)) return 1;
+    if (onroad_types.includes(type)) return 2;
+    if (offroad_types.includes(type)) return 3;
+    if (separated_types.includes(type)) return 4;
+    return 0;
+}
+
+function rank_to_label(rank) {
+    if (rank === 4) return "separated";
+    if (rank === 3) return "offroad";
+    if (rank === 2) return "onroad";
+    if (rank === 1) return "sharrows";
+    return "none";
+}
+
+function classify_infrastructure(hexdata, infrastructure_data) {
+    hexdata.features.forEach((hex, i) => {
+        if (!hex.properties) hex.properties = {};
+        hex.properties.hex_id = i;
+        hex.properties.infra_rank = 0;
+        hex.properties.infra_context = "none";
+    });
+
+    infrastructure_data.features.forEach(line => {
+        
+        const type = line.properties?.INFRA_HIGHORDER;
+        const rank = get_infra_rank(type);
+
+        if (rank === 0) return;
+
+        let pt;
+        try {
+            // takes a point on the line (same point each time), and determines if its inside the polygon
+            // LIMITATION: we lose coverage, we're saying that bikelane only exists in 1 polygon even if it spans multiple ones
+            // but computationally, it is much faster than using intersect, much much faster
+            pt = turf.pointOnFeature(line);
+        } catch (err) {
+            return;
+        }
+
+        for (const hex of hexdata.features) {
+            if (turf.booleanPointInPolygon(pt, hex)) {
+                if (rank > hex.properties.infra_rank) {
+                    hex.properties.infra_rank = rank;
+                    hex.properties.infra_context = rank_to_label(rank);
+                }
+                break;
+            }
+        }
+    });
+
+    return hexdata;
+}
+
+// function classify_infrastructure(hexdata, infrastructure_data) {
+//     if (!hexdata || !hexdata.features) {
+//         console.error("hexdata is bad:", hexdata);
+//         return hexdata;
+//     }
+
+//     if (!infrastructure_data || !infrastructure_data.features) {
+//         console.error("infrastructure_data is bad:", infrastructure_data);
+//         return hexdata;
+//     }
+    
+//     hexdata.features.forEach(hex => {
+//         let has_sharrow = false;
+//         let has_onroad = false;
+//         let has_separated = false;
+//         let has_offroad = false;
+
+//         infrastructure_data.features.forEach(line => {
+//             /// for each line, check if that line intersects this hexagon,
+//             /// if it has one of any of the 4 types of roads, return true
+//             if (turf.booleanIntersects(hex, line)) {
+
+//                 const type = line.properties.INFRA_HIGHORDER;
+
+//                 if (sharrow_types.includes(type)) has_sharrow = true;
+//                 if (onroad_types.includes(type)) has_onroad = true;
+//                 if (separated_types.includes(type)) has_separated = true;
+//                 if (offroad_types.includes(type)) has_offroad = true;
+//             }
+//         });
+
+//         /// returns the road infrastructure type based on this hierachy
+//         /// in case some hexagons have different types of roads intersecting it
+//         let infra_context = "none";
+
+//         if (has_separated) {
+//             infra_context = "separated";
+//         } else if (has_offroad) {
+//             infra_context = "offroad";
+//         } else if (has_onroad) {
+//             infra_context = "onroad";
+//         } else if (has_sharrow) {
+//             infra_context = "sharrows";
+//         }
+
+//         /// updates the properties with the highest type of infrastructure in the hexagon
+//         hex.properties.infra_context = infra_context;
+//     });
+
+//     return hexdata;
+// }
 
 /*--------------------------------------------------------------------
 SAFETY/COLLISION SECTION (Hexgrid)
@@ -429,7 +648,11 @@ function update_legend(selected_year) {
 /// function 5: using hexgrids we built from function 2, we update the layer and colors in the map section above 
 function updating_safety_layer(selected_year){
     const collisions_filtered = filter_collisions_by_year(selected_year);
-    const hexgrids = building_hexgrids(collisions_filtered);
+
+    let hexgrids = building_hexgrids(collisions_filtered);
+    /// update the hexgrid with infrastructure classification AFTER finding the collision counts first
+    current_hexgrid = hexgrids; 
+
     /// get source pulls the source layer called collision_hexgrid, setData sets hexgrid as data for that layer
     map.getSource("collision_hexgrids").setData(hexgrids);
 
@@ -549,56 +772,38 @@ TRAFFIC FLOW SECTION
             "<h2>This Entry/Exit Point</h2>";
     });
 
+
+
 /*--------------------------------------------------------------------
-INFRASTRUCTURE SECTION
+GET TOP 10 COLLISION HEXGRIDS
 --------------------------------------------------------------------*/
+/// button to get the infrastructure tyoe we are interested in 
+document.getElementById("hotspots-button").addEventListener("click", () => {
+    const selected_infra = document.getElementById("infra-dropdown").value;
 
-/// Sharrow category values from INFRA_HIGHORDER field
-const sharrow_types = [
-    'Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
-    'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'
-];
+    const top10 = get_top10_hotspots(current_hexgrid, selected_infra);
 
-/// On-Road category values
-const onroad_types = [
-    'Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'
-];
+    console.log("selected_infra:", selected_infra);
+    console.log("top10 count:", top10.length);
+    console.log(top10.map(f => ({
+        infra: f.properties.infra_context,
+        count: f.properties.collision_count_hex
+    })));
 
-/// Physically Separated category values
-const separated_types = [
-    'Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'
-];
+    map.getSource("hotspots").setData({
+        type: "FeatureCollection",
+        features: top10
+    });
+});
 
-/// Off-Road category values
-const offroad_types = [
-    'Multi-Use Trail', 'Multi-Use Trail - Boulevard', 'Multi-Use Trail - Connector',
-    'Multi-Use Trail - Entrance', 'Multi-Use Trail - Existing Connector', 'Park Road'
-];
-
-/// Builds a combined filter based on which checkboxes are checked
-function update_infrastructure_filter() {
-    const show_sharrows   = document.getElementById('cb-sharrows').checked;
-    const show_onroad     = document.getElementById('cb-onroad').checked;
-    const show_separated  = document.getElementById('cb-separated').checked;
-    const show_offroad    = document.getElementById('cb-offroad').checked;
-
-    /// Collect which INFRA_HIGHORDER values should be visible
-    let visible_types = [];
-    if (show_sharrows)  visible_types = visible_types.concat(sharrow_types);
-    if (show_onroad)    visible_types = visible_types.concat(onroad_types);
-    if (show_separated) visible_types = visible_types.concat(separated_types);
-    if (show_offroad)   visible_types = visible_types.concat(offroad_types);
-
-    /// If nothing is checked, show nothing; otherwise filter to matching types
-    if (visible_types.length === 0) {
-        map.setFilter('infrastructure-layer', ['==', ['get', 'INFRA_HIGHORDER'], '']);
-    } else {
-        map.setFilter('infrastructure-layer', ['in', ['get', 'INFRA_HIGHORDER'], ['literal', visible_types]]);
-    }
+function get_top10_hotspots(hexgrid, selected_infra) {
+    if (!hexgrid || !hexgrid.features) return [];
+    return hexgrid.features
+        .filter(f =>
+            f.properties.infra_context === selected_infra &&
+            (f.properties.collision_count_hex ?? 0) > 0
+        )
+        // amongst the filtered hexagons with the selected infra, js looks at a pair of hexagons and finds which ones higher and lower and reiterates
+        .sort((a, b) => b.properties.collision_count_hex - a.properties.collision_count_hex)
+        .slice(0, 10);
 }
-
-/// Attach event listener to each checkbox
-document.getElementById('cb-sharrows').addEventListener('change', update_infrastructure_filter);
-document.getElementById('cb-onroad').addEventListener('change', update_infrastructure_filter);
-document.getElementById('cb-separated').addEventListener('change', update_infrastructure_filter);
-document.getElementById('cb-offroad').addEventListener('change', update_infrastructure_filter);

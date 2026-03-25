@@ -78,6 +78,22 @@
         <div class="panel" id="bikeshare">
             <h2>Bikeshare Stations     <button id="toggle_bikeshare">On/Off</button></h2>
         </div>
+
+        <div class="panel" id="hotspots">
+            <h2>Hotspot Analysis    <button id="toggle_hotspots">On/Off</button></h2>
+
+            <label for="infra-dropdown">Infrastructure Type:</label>
+            <select id="infra-dropdown">
+                <option value="none">No Infrastructure</option>
+                <option value="sharrows">Sharrows</option>
+                <option value="onroad">On-Road Bike Lanes</option>
+                <option value="offroad">Off-Road Trails</option>
+                <option value="separated">Physically Separated</option>
+            </select>
+
+            <button id="hotspots-button">Show Top 10 Hotspots</button>
+        </div>
+
     </div>
 
     <div id="legend_container" class="legend">
@@ -91,6 +107,7 @@
             <div><span></span>80 – 95%</div>
             <div><span></span>95 – 100%</div>
             <p>Circle size: Total Cycling Cordon Counts 2022 (only cycling, excluding other forms of micromobility)</p>
+        </div>
         <div id="infrastructure_legend" class="legend_section">
             <h4>Infrastructure</h4>
             <div><span class="infra-line" style="background:#f4a261;"></span>Sharrows</div>
@@ -100,6 +117,9 @@
         </div>
         <div id="bikeshare_legend" class="legend_section">
             <h4>Bikeshare Stations</h4>
+        </div>
+        <div id="hotspots_legend" class="legend_section">
+            <h4>Collision Hotspots by Infrastructure Type 🛑</h4>
         </div>
         </div>
     </div>
