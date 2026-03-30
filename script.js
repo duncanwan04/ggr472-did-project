@@ -19,7 +19,7 @@ let collision_data;
 let hex_base;
 let safety_visible = true;
 let infrastructure_data;
-let current_hexgrid;
+let hotspot_hexgrids;
 
 /*--------------------------------------------------------------------
 ADDING GEOCODER
@@ -192,7 +192,7 @@ map.on('load', async () => {
         bboxscaled.geometry.coordinates[0][2][1],
     ];
     hex_base = turf.hexGrid(bboxcoords, 0.25, {units: "kilometers"});
-    hex_base = classify_infrastructure(hex_base, infrastructure_data);
+    //Old code: hex_base = classify_infrastructure(hex_base, infrastructure_data);
 
     console.log(
     hex_base.features.slice(0, 10).map(f => f.properties.infra_context)
@@ -287,7 +287,11 @@ map.on('load', async () => {
         }
     });
 
-        updating_safety_layer("all");
+    const hotspot_response = await fetch("https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/hotspot_collision_and_infra.geojson");
+    hotspot_hexgrids = await hotspot_response.json();
+    console.log("hotspot_hexgrids loaded:", hotspot_hexgrids);
+
+        
 
     /// The following code was used to download my hexgrids (for all years for the hotspot analysis part)
 
@@ -303,7 +307,10 @@ map.on('load', async () => {
     //     document.body.appendChild(dlAnchor);
     //     dlAnchor.click();
     //     dlAnchor.remove();
-    });
+
+    updating_safety_layer("all");
+    
+});
 
 
 /*--------------------------------------------------------------------
@@ -434,118 +441,118 @@ document.getElementById('cb-separated').addEventListener('change', update_infras
 document.getElementById('cb-offroad').addEventListener('change', update_infrastructure_filter);
 
 /*--------------------------------------------------------------------
-COLLISION AND INFRASTRUCTURE CROSSOVER FUNCTION 1
+OLD CODE: COLLISION AND INFRASTRUCTURE CROSSOVER FUNCTION 1
 --------------------------------------------------------------------*/
 
-function get_infra_rank(type) {
-    if (sharrow_types.includes(type)) return 1;
-    if (onroad_types.includes(type)) return 2;
-    if (offroad_types.includes(type)) return 3;
-    if (separated_types.includes(type)) return 4;
-    return 0;
-}
+// function get_infra_rank(type) {
+//     if (sharrow_types.includes(type)) return 1;
+//     if (onroad_types.includes(type)) return 2;
+//     if (offroad_types.includes(type)) return 3;
+//     if (separated_types.includes(type)) return 4;
+//     return 0;
+// }
 
-function rank_to_label(rank) {
-    if (rank === 4) return "separated";
-    if (rank === 3) return "offroad";
-    if (rank === 2) return "onroad";
-    if (rank === 1) return "sharrows";
-    return "none";
-}
+// function rank_to_label(rank) {
+//     if (rank === 4) return "separated";
+//     if (rank === 3) return "offroad";
+//     if (rank === 2) return "onroad";
+//     if (rank === 1) return "sharrows";
+//     return "none";
+// }
 
-function classify_infrastructure(hexdata, infrastructure_data) {
-    hexdata.features.forEach((hex, i) => {
-        // if this hexagon doesn't have properties yet, make one
-        if (!hex.properties) hex.properties = {};
-        hex.properties.hex_id = i;
-        // assume these initial conditions for each hexagon (no infrastructure)
-        hex.properties.infra_rank = 0;
-        hex.properties.infra_context = "none";
-    });
+// function classify_infrastructure(hexdata, infrastructure_data) {
+//     hexdata.features.forEach((hex, i) => {
+//         // if this hexagon doesn't have properties yet, make one
+//         if (!hex.properties) hex.properties = {};
+//         hex.properties.hex_id = i;
+//         // assume these initial conditions for each hexagon (no infrastructure)
+//         hex.properties.infra_rank = 0;
+//         hex.properties.infra_context = "none";
+//     });
 
-    infrastructure_data.features.forEach(line => {
+//     infrastructure_data.features.forEach(line => {
         
-        const type = line.properties?.INFRA_HIGHORDER;
-        // using Isabella's code and grouping of infrastructure types
-        const rank = get_infra_rank(type);
+//         const type = line.properties?.INFRA_HIGHORDER;
+//         // using Isabella's code and grouping of infrastructure types
+//         const rank = get_infra_rank(type);
 
-        if (rank === 0) return;
+//         if (rank === 0) return;
 
-        let pt;
-        try {
-            // takes a point on the line (same point each time), and determines if its inside the polygon
-            // LIMITATION: we lose coverage, we're saying that bikelane only exists in 1 polygon even if it spans multiple ones
-            // but computationally, it is much faster than using intersect, much much faster
-            pt = turf.pointOnFeature(line);
-        } catch (err) {
-            return;
-        }
+//         let pt;
+//         try {
+//             // takes a point on the line (same point each time), and determines if its inside the polygon
+//             // LIMITATION: we lose coverage, we're saying that bikelane only exists in 1 polygon even if it spans multiple ones
+//             // but computationally, it is much faster than using intersect, much much faster
+//             pt = turf.pointOnFeature(line);
+//         } catch (err) {
+//             return;
+//         }
 
-        for (const hex of hexdata.features) {
-            if (turf.booleanPointInPolygon(pt, hex)) {
-                if (rank > hex.properties.infra_rank) {
-                    hex.properties.infra_rank = rank;
-                    hex.properties.infra_context = rank_to_label(rank);
-                }
-                break;
-            }
-        }
-    });
+//         for (const hex of hexdata.features) {
+//             if (turf.booleanPointInPolygon(pt, hex)) {
+//                 if (rank > hex.properties.infra_rank) {
+//                     hex.properties.infra_rank = rank;
+//                     hex.properties.infra_context = rank_to_label(rank);
+//                 }
+//                 break;
+//             }
+//         }
+//     });
 
-    return hexdata;
-}
+//     return hexdata;
+// }
 
-function classify_infrastructure(hexdata, infrastructure_data) {
-    if (!hexdata || !hexdata.features) {
-        console.error("hexdata is bad:", hexdata);
-        return hexdata;
-    }
+// function classify_infrastructure(hexdata, infrastructure_data) {
+//     if (!hexdata || !hexdata.features) {
+//         console.error("hexdata is bad:", hexdata);
+//         return hexdata;
+//     }
 
-    if (!infrastructure_data || !infrastructure_data.features) {
-        console.error("infrastructure_data is bad:", infrastructure_data);
-        return hexdata;
-    }
+//     if (!infrastructure_data || !infrastructure_data.features) {
+//         console.error("infrastructure_data is bad:", infrastructure_data);
+//         return hexdata;
+//     }
     
-    hexdata.features.forEach(hex => {
-        let has_sharrow = false;
-        let has_onroad = false;
-        let has_separated = false;
-        let has_offroad = false;
+//     hexdata.features.forEach(hex => {
+//         let has_sharrow = false;
+//         let has_onroad = false;
+//         let has_separated = false;
+//         let has_offroad = false;
 
-        infrastructure_data.features.forEach(line => {
-            /// for each line, check if that line intersects this hexagon,
-            /// if it has one of any of the 4 types of roads, return true
-            if (turf.booleanIntersects(hex, line)) {
+//         infrastructure_data.features.forEach(line => {
+//             /// for each line, check if that line intersects this hexagon,
+//             /// if it has one of any of the 4 types of roads, return true
+//             if (turf.booleanIntersects(hex, line)) {
 
-                const type = line.properties.INFRA_HIGHORDER;
+//                 const type = line.properties.INFRA_HIGHORDER;
 
-                if (sharrow_types.includes(type)) has_sharrow = true;
-                if (onroad_types.includes(type)) has_onroad = true;
-                if (separated_types.includes(type)) has_separated = true;
-                if (offroad_types.includes(type)) has_offroad = true;
-            }
-        });
+//                 if (sharrow_types.includes(type)) has_sharrow = true;
+//                 if (onroad_types.includes(type)) has_onroad = true;
+//                 if (separated_types.includes(type)) has_separated = true;
+//                 if (offroad_types.includes(type)) has_offroad = true;
+//             }
+//         });
 
-        /// returns the road infrastructure type based on this hierachy
-        /// in case some hexagons have different types of roads intersecting it
-        let infra_context = "none";
+//         /// returns the road infrastructure type based on this hierachy
+//         /// in case some hexagons have different types of roads intersecting it
+//         let infra_context = "none";
 
-        if (has_separated) {
-            infra_context = "separated";
-        } else if (has_offroad) {
-            infra_context = "offroad";
-        } else if (has_onroad) {
-            infra_context = "onroad";
-        } else if (has_sharrow) {
-            infra_context = "sharrows";
-        }
+//         if (has_separated) {
+//             infra_context = "separated";
+//         } else if (has_offroad) {
+//             infra_context = "offroad";
+//         } else if (has_onroad) {
+//             infra_context = "onroad";
+//         } else if (has_sharrow) {
+//             infra_context = "sharrows";
+//         }
 
-        /// updates the properties with the highest type of infrastructure in the hexagon
-        hex.properties.infra_context = infra_context;
-    });
+//         /// updates the properties with the highest type of infrastructure in the hexagon
+//         hex.properties.infra_context = infra_context;
+//     });
 
-    return hexdata;
-}
+//     return hexdata;
+// }
 
 /*--------------------------------------------------------------------
 SAFETY/COLLISION SECTION (Hexgrid)
@@ -699,8 +706,6 @@ function updating_safety_layer(selected_year){
     const collisions_filtered = filter_collisions_by_year(selected_year);
 
     let hexgrids = building_hexgrids(collisions_filtered);
-    /// update the hexgrid with infrastructure classification AFTER finding the collision counts first
-    current_hexgrid = hexgrids; 
 
     /// get source pulls the source layer called collision_hexgrid, setData sets hexgrid as data for that layer
     map.getSource("collision_hexgrids").setData(hexgrids);
@@ -822,37 +827,118 @@ TRAFFIC FLOW SECTION
     });
 
 
-
 /*--------------------------------------------------------------------
-GET TOP 10 COLLISION HEXGRIDS
+NEW CODE: GET TOP 10 COLLISION HEXGRIDS
 --------------------------------------------------------------------*/
-/// button to get the infrastructure tyoe we are interested in 
+function get_top10_hotspots(hexgrid, selected_infra) {
+    if (!hexgrid || !hexgrid.features) {
+        return {
+            top10: [],
+            avg: 0,
+            max: 0
+        };
+    }
+
+    const filtered = hexgrid.features.filter(f =>
+        f.properties.infra_context === selected_infra
+    );
+
+    if (filtered.length === 0) {
+        return {
+            top10: [],
+            avg: 0,
+            max: 0
+        };
+    }
+
+    let total = 0;
+    filtered.forEach(f => {total += f.properties.collision_count_hex;});
+    const avg = total / filtered.length;
+
+    const max = Math.max(
+        ...filtered.map(f => f.properties.collision_count_hex)
+    );
+
+    // amongst the filtered hexagons with the selected infra, js looks at a pair of hexagons and finds which ones higher and lower and reiterates
+    const top10 = filtered
+        .sort((a, b) => b.properties.collision_count_hex - a.properties.collision_count_hex)
+        .slice(0, 10);
+
+    return {
+        top10: top10,
+        avg: avg,
+        max: max
+    };
+}
+
+
 document.getElementById("hotspots-button").addEventListener("click", () => {
     const selected_infra = document.getElementById("infra-dropdown").value;
 
-    const top10 = get_top10_hotspots(current_hexgrid, selected_infra);
-
-    console.log("selected_infra:", selected_infra);
-    console.log("top10 count:", top10.length);
-    console.log(top10.map(f => ({
-        infra: f.properties.infra_context,
-        count: f.properties.collision_count_hex
-    })));
+    const result = get_top10_hotspots(hotspot_hexgrids, selected_infra);
 
     map.getSource("hotspots").setData({
         type: "FeatureCollection",
-        features: top10
+        features: result.top10
     });
+
+    const average_max_infra = document.getElementById("average_max_infra");
+
+    average_max_infra.innerHTML = `
+        <b>Summary for Selected Infrastructure Type</b><br>
+        Average collisions/hexgrid: ${result.avg.toFixed(1)}<br>
+        Highest collision count: ${result.max}
+    `;
+
+    function overall_average(hexgrid) {
+        if (!hexgrid || !hexgrid.features) return 0;
+
+        let total = 0;
+        let count = 0;
+
+        hexgrid.features.forEach(f => {
+            const collisions = Number(f.properties.collision_count_hex || 0);
+            total += collisions;
+            count += 1;
+            }
+        );
+        return total / count;
+    }
+
+    const overall_avg = overall_average(hotspot_hexgrids);
+    console.log("overall avg:", overall_avg);
 });
 
-function get_top10_hotspots(hexgrid, selected_infra) {
-    if (!hexgrid || !hexgrid.features) return [];
-    return hexgrid.features
-        .filter(f =>
-            f.properties.infra_context === selected_infra &&
-            (f.properties.collision_count_hex ?? 0) > 0
-        )
-        // amongst the filtered hexagons with the selected infra, js looks at a pair of hexagons and finds which ones higher and lower and reiterates
-        .sort((a, b) => b.properties.collision_count_hex - a.properties.collision_count_hex)
-        .slice(0, 10);
-}
+/*--------------------------------------------------------------------
+OLD CODE: GET TOP 10 COLLISION HEXGRIDS
+--------------------------------------------------------------------*/
+/// button to get the infrastructure tyoe we are interested in 
+// document.getElementById("hotspots-button").addEventListener("click", () => {
+//     const selected_infra = document.getElementById("infra-dropdown").value;
+
+//     const top10 = get_top10_hotspots(current_hexgrid, selected_infra);
+
+//     console.log("selected_infra:", selected_infra);
+//     console.log("top10 count:", top10.length);
+//     console.log(top10.map(f => ({
+//         infra: f.properties.infra_context,
+//         count: f.properties.collision_count_hex
+//     })));
+
+//     map.getSource("hotspots").setData({
+//         type: "FeatureCollection",
+//         features: top10
+//     });
+// });
+
+// function get_top10_hotspots(hexgrid, selected_infra) {
+//     if (!hexgrid || !hexgrid.features) return [];
+//     return hexgrid.features
+//         .filter(f =>
+//             f.properties.infra_context === selected_infra &&
+//             (f.properties.collision_count_hex ?? 0) > 0
+//         )
+//         // amongst the filtered hexagons with the selected infra, js looks at a pair of hexagons and finds which ones higher and lower and reiterates
+//         .sort((a, b) => b.properties.collision_count_hex - a.properties.collision_count_hex)
+//         .slice(0, 10);
+// }
