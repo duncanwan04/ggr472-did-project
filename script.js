@@ -130,6 +130,37 @@ map.on('load', async () => {
         }
    });
 
+   /// Following part for downloading the infrastructure layer as geojson for hotspot analysis part
+   /// Using functions Isabella made 
+
+    // function get_infra_group(type) {
+    //     if (sharrow_types.includes(type)) return "sharrows";
+    //     if (onroad_types.includes(type)) return "onroad";
+    //     if (separated_types.includes(type)) return "separated";
+    //     if (offroad_types.includes(type)) return "offroad";
+    //     return "none";
+    // }
+
+    // const grouped_infra = {
+    //     type: "FeatureCollection",
+    //     features: infrastructure_data.features.map(f => ({
+    //         ...f,
+    //         properties: {
+    //             ...f.properties,
+    //             infra_group: get_infra_group(f.properties.INFRA_HIGHORDER)
+    //         }
+    //     }))
+    // };
+
+    // const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(grouped_infra));
+
+    // const dl = document.createElement("a");
+    // dl.href = dataStr;
+    // dl.download = "grouped_infrastructure.geojson";
+    // document.body.appendChild(dl);
+    // dl.click();
+    // dl.remove();
+
     /*--------------------------------------------------------------------
     SAFETY SECTION
     --------------------------------------------------------------------*/
@@ -257,6 +288,21 @@ map.on('load', async () => {
     });
 
         updating_safety_layer("all");
+
+    /// The following code was used to download my hexgrids (for all years for the hotspot analysis part)
+
+    //     console.log("EXPORT RUNNING");
+
+    //     const hexdata = building_hexgrids(collision_data);
+
+    //     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(hexdata));
+
+    //     const dlAnchor = document.createElement("a");
+    //     dlAnchor.setAttribute("href", dataStr);
+    //     dlAnchor.setAttribute("download", "all_years_hexgrid.geojson");
+    //     document.body.appendChild(dlAnchor);
+    //     dlAnchor.click();
+    //     dlAnchor.remove();
     });
 
 
@@ -409,8 +455,10 @@ function rank_to_label(rank) {
 
 function classify_infrastructure(hexdata, infrastructure_data) {
     hexdata.features.forEach((hex, i) => {
+        // if this hexagon doesn't have properties yet, make one
         if (!hex.properties) hex.properties = {};
         hex.properties.hex_id = i;
+        // assume these initial conditions for each hexagon (no infrastructure)
         hex.properties.infra_rank = 0;
         hex.properties.infra_context = "none";
     });
@@ -418,6 +466,7 @@ function classify_infrastructure(hexdata, infrastructure_data) {
     infrastructure_data.features.forEach(line => {
         
         const type = line.properties?.INFRA_HIGHORDER;
+        // using Isabella's code and grouping of infrastructure types
         const rank = get_infra_rank(type);
 
         if (rank === 0) return;
@@ -446,57 +495,57 @@ function classify_infrastructure(hexdata, infrastructure_data) {
     return hexdata;
 }
 
-// function classify_infrastructure(hexdata, infrastructure_data) {
-//     if (!hexdata || !hexdata.features) {
-//         console.error("hexdata is bad:", hexdata);
-//         return hexdata;
-//     }
+function classify_infrastructure(hexdata, infrastructure_data) {
+    if (!hexdata || !hexdata.features) {
+        console.error("hexdata is bad:", hexdata);
+        return hexdata;
+    }
 
-//     if (!infrastructure_data || !infrastructure_data.features) {
-//         console.error("infrastructure_data is bad:", infrastructure_data);
-//         return hexdata;
-//     }
+    if (!infrastructure_data || !infrastructure_data.features) {
+        console.error("infrastructure_data is bad:", infrastructure_data);
+        return hexdata;
+    }
     
-//     hexdata.features.forEach(hex => {
-//         let has_sharrow = false;
-//         let has_onroad = false;
-//         let has_separated = false;
-//         let has_offroad = false;
+    hexdata.features.forEach(hex => {
+        let has_sharrow = false;
+        let has_onroad = false;
+        let has_separated = false;
+        let has_offroad = false;
 
-//         infrastructure_data.features.forEach(line => {
-//             /// for each line, check if that line intersects this hexagon,
-//             /// if it has one of any of the 4 types of roads, return true
-//             if (turf.booleanIntersects(hex, line)) {
+        infrastructure_data.features.forEach(line => {
+            /// for each line, check if that line intersects this hexagon,
+            /// if it has one of any of the 4 types of roads, return true
+            if (turf.booleanIntersects(hex, line)) {
 
-//                 const type = line.properties.INFRA_HIGHORDER;
+                const type = line.properties.INFRA_HIGHORDER;
 
-//                 if (sharrow_types.includes(type)) has_sharrow = true;
-//                 if (onroad_types.includes(type)) has_onroad = true;
-//                 if (separated_types.includes(type)) has_separated = true;
-//                 if (offroad_types.includes(type)) has_offroad = true;
-//             }
-//         });
+                if (sharrow_types.includes(type)) has_sharrow = true;
+                if (onroad_types.includes(type)) has_onroad = true;
+                if (separated_types.includes(type)) has_separated = true;
+                if (offroad_types.includes(type)) has_offroad = true;
+            }
+        });
 
-//         /// returns the road infrastructure type based on this hierachy
-//         /// in case some hexagons have different types of roads intersecting it
-//         let infra_context = "none";
+        /// returns the road infrastructure type based on this hierachy
+        /// in case some hexagons have different types of roads intersecting it
+        let infra_context = "none";
 
-//         if (has_separated) {
-//             infra_context = "separated";
-//         } else if (has_offroad) {
-//             infra_context = "offroad";
-//         } else if (has_onroad) {
-//             infra_context = "onroad";
-//         } else if (has_sharrow) {
-//             infra_context = "sharrows";
-//         }
+        if (has_separated) {
+            infra_context = "separated";
+        } else if (has_offroad) {
+            infra_context = "offroad";
+        } else if (has_onroad) {
+            infra_context = "onroad";
+        } else if (has_sharrow) {
+            infra_context = "sharrows";
+        }
 
-//         /// updates the properties with the highest type of infrastructure in the hexagon
-//         hex.properties.infra_context = infra_context;
-//     });
+        /// updates the properties with the highest type of infrastructure in the hexagon
+        hex.properties.infra_context = infra_context;
+    });
 
-//     return hexdata;
-// }
+    return hexdata;
+}
 
 /*--------------------------------------------------------------------
 SAFETY/COLLISION SECTION (Hexgrid)
