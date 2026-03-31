@@ -19,7 +19,7 @@
 <body>
     <div id="sidebar" class="sidebar">
         <h1>Toronto Cycling Safety Map</h1>
-        <p>Cycling infrastructure, collisions, traffic flow, bikeshare stations</p>
+        <p>Cycling infrastructure, collisions, traffic flow</p>
 
         <div id="safety" class="panel"> 
             <h2>Safety (Collisions)     <button id="toggle_safety">On/Off</button></h2>
@@ -66,21 +66,52 @@
         </div>
 
         <div class="panel" id="traffic-flow">
-            <h2>Traffic Flow     <button id="toggle_traffic">On/Off</button></h2>
+            <div class="traffic-header">
+                <h2>Traffic Flow 
+                <button id="toggle_traffic">On/Off</button>
+                <button id="zoom_traffic">Zoom to area</button>
+                </h2>
+            </div>
             <p>
                 Traffic flow data represent cordon counts collected at entry points during a single observation period in 2022
             </p>
-            <label for="cycling_volume_slider">Cycling Count Filter</label>
-                <input id="cycling_volume_input" type="number" min="0" max="1900" step="1" value="0">
-                <input id="cycling_volume_slider" type="range" min="0" max="1900" step="1" value="0">
+
+            Show Cordon Counts based on:
+            
+            <div class="indented-group">
+                <div>
+                    Bike Lane Usage (%):
+                    <select id="bikelane_dropdown">
+                        <option value="selected" selected>All</option>
+                        <option value="none">No Biking Infrastructure</option>
+                        <option value="high">High (>70%)</option>
+                        <option value="medium">Medium (40-70%)</option>
+                        <option value="low">Low (&lt;40%)</option>
+                    </select>
+                </div>
+
+                <div>
+                    Cycling Volume (Count):
+                    <select id="count_dropdown">
+                        <option value="selected" selected>All</option>
+                        <option value="high">High (>900)</option>
+                        <option value="medium">Medium (300-900)</option>
+                        <option value="low">Low (300)</option>
+                    </select>
+                </div>
+            </div>
+
+
         </div>     
 
-        <div class="panel" id="bikeshare">
-            <h2>Bikeshare Stations     <button id="toggle_bikeshare">On/Off</button></h2>
-        </div>
-
         <div class="panel" id="hotspots">
-            <h2>Hotspot Analysis    <button id="toggle_hotspots">On/Off</button></h2>
+            <h2>Top 20 Collision Hotspots (By Infrastructure Type)    <button id="toggle_hotspots">On/Off</button></h2>
+
+        <p>
+            Aggregated cycling collision data from 2020–2025 for comparison between cycling volume and usage of bikelane
+            <br>
+            (Overall Average Collisions/hexgrid: 0.87)
+        </p>
 
             <label for="infra-dropdown">Infrastructure Type:</label>
             <select id="infra-dropdown">
@@ -90,9 +121,9 @@
                 <option value="offroad">Off-Road Trails</option>
                 <option value="separated">Physically Separated</option>
             </select>
-            <button id="hotspots-button">Show Top 10 Hotspots</button>
-            <p>Overall Average Collisions/hexgrid: 0.87</p>
-            <p id="average_max_infra"> </p>
+            <button id="hotspots-button">Show Top 20 Hotspots</button>
+            <p class="indented-group" id="average_max_infra"> </p>
+            **Adjust the injury slider to redefine hotspots based on collision severity rather than overall frequency.
         </div>
 
     </div>
@@ -115,9 +146,6 @@
             <div><span class="infra-line" style="background:#2196F3;"></span>On-Road Bike Lane</div>
             <div><span class="infra-line" style="background:#4CAF50;"></span>Physically Separated</div>
             <div><span class="infra-line" style="background:#9C27B0;"></span>Off-Road / Trail</div>
-        </div>
-        <div id="bikeshare_legend" class="legend_section">
-            <h4>Bikeshare Stations</h4>
         </div>
         <div id="hotspots_legend" class="legend_section">
             <h4>Collision Hotspots by Infrastructure Type 🛑</h4>

@@ -247,18 +247,18 @@ map.on('load', async () => {
     });
 
     /*--------------------------------------------------------------------
-    BIKESHARE LAYER
+    NOT INCLUDING ANYMORE: BIKESHARE LAYER
     --------------------------------------------------------------------*/
-    map.addSource('bikeshare', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/bikeshare_stations.geojson'
-    });
+    // map.addSource('bikeshare', {
+    //     type: 'geojson',
+    //     data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/bikeshare_stations.geojson'
+    // });
 
-    map.addLayer({
-        'id': 'bikeshare-layer',
-        'type': 'circle',
-        'source': 'bikeshare',
-    });
+    // map.addLayer({
+    //     'id': 'bikeshare-layer',
+    //     'type': 'circle',
+    //     'source': 'bikeshare',
+    // });
 
 
     /*--------------------------------------------------------------------
@@ -362,17 +362,17 @@ document.getElementById("toggle_infrastructure").addEventListener("click", () =>
     }
 }); 
 
-document.getElementById("toggle_bikeshare").addEventListener("click", () => {
-    const visibility_status = map.getLayoutProperty('bikeshare-layer', 'visibility');
-    const bikeshare_legend = document.getElementById("bikeshare_legend");
-    if (visibility_status === "none"){
-        map.setLayoutProperty('bikeshare-layer', 'visibility', 'visible');
-        bikeshare_legend.style.display = "block";
-    } else {
-       map.setLayoutProperty('bikeshare-layer', 'visibility', 'none'); 
-       bikeshare_legend.style.display = "none";
-    }
-}); 
+// document.getElementById("toggle_bikeshare").addEventListener("click", () => {
+//     const visibility_status = map.getLayoutProperty('bikeshare-layer', 'visibility');
+//     const bikeshare_legend = document.getElementById("bikeshare_legend");
+//     if (visibility_status === "none"){
+//         map.setLayoutProperty('bikeshare-layer', 'visibility', 'visible');
+//         bikeshare_legend.style.display = "block";
+//     } else {
+//        map.setLayoutProperty('bikeshare-layer', 'visibility', 'none'); 
+//        bikeshare_legend.style.display = "none";
+//     }
+// }); 
 
 document.getElementById("toggle_hotspots").addEventListener("click", () => {
     const visibility_status = map.getLayoutProperty('hotspots-layer', 'visibility');
@@ -761,6 +761,9 @@ function injury_filter(){
     );
     /// because the slider.value returns a string, it won't compare or 
     /// work well with the inequality signs. parseFloat turns string to number
+    map.setFilter('hotspots-layer',
+        ['>=', ['get', 'injury_proportion_hex'], parseFloat(injury_slider.value)]
+    );
 }
 
 injury_slider.addEventListener('input', () => {
@@ -785,32 +788,28 @@ map.on('click', 'collision-hexgrids-layer', (e) => {
 TRAFFIC FLOW SECTION
 --------------------------------------------------------------------*/
 
-/// cyling volume slider/filter
-    const cycling_volume_slider = document.getElementById("cycling_volume_slider");
-    const cycling_volume_input = document.getElementById("cycling_volume_input");
-
-        function traffic_flow_filter(){
-            map.setFilter('traffic-flow-layer', 
-                ["all",
-                    ['>=', ['get', 'cycling_volume'], parseFloat(cycling_volume_slider.value)],
-                ]
-            );
-        }
-
-        cycling_volume_input.addEventListener('input', () =>{
-            cycling_volume_slider.value = cycling_volume_input.value;
-            traffic_flow_filter();
-        })
-
-        cycling_volume_slider.addEventListener('input', () =>{
-            cycling_volume_input.value = cycling_volume_slider.value;
-            traffic_flow_filter();
-        })
-
 /// Hover
     map.on('mousemove', 'traffic-flow-layer', (e) => {
         const count = e.features[0].properties.cycling_volume;
         const bikelane_usage = e.features[0].properties.bikelane_usage_percentage;
+
+        // const interpretation = "";
+        // if (activity_level === "High" && infra_level === "Low") {
+        //     interpretation = "High cycling activity but limited infrastructure use — possible mismatch.";
+        // } else if (activity_level === "High" && infra_level === "High") {
+        //     interpretation = "High-activity corridor with strong infrastructure use.";
+        // } else if (activity_level === "Low" && infra_level === "None") {
+        //     interpretation = "Low cycling activity in an area without dedicated infrastructure.";
+        // } else if (activity_level === "Moderate" && infra_level === "High") {
+        //     interpretation = "Moderate cycling activity with strong infrastructure use.";
+        // } else if (activity_level === "Moderate" && infra_level === "Low") {
+        //     interpretation = "Moderate cycling activity with limited infrastructure use.";
+        // } else if (activity_level === "Low" && infra_level === "High") {
+        //     interpretation = "Lower cycling activity despite strong infrastructure use.";
+        // } else {
+        //     interpretation = "Moderate cycling conditions.";
+        // }
+
         let usage_text = isNaN(bikelane_usage) 
             ? "No Cycling Infrastructure Here" 
             : bikelane_usage.toFixed(1) + "%";
@@ -819,6 +818,7 @@ TRAFFIC FLOW SECTION
             + "<h3>Cycling Count: " + count + "</h3>"
             + "<h3>Bikelane Usage: " + usage_text + "</h3>";
         /// innerHTML replaces the content of the div i specified with the ID
+        
     });
 
     map.on('mouseleave', "traffic-flow-layer", () => {
@@ -827,13 +827,66 @@ TRAFFIC FLOW SECTION
     });
 
 
+// filtering based on bikelane usage and cycling volume 
+
+    function cordon_filter(){
+        const bikelane_usage = document.getElementById("bikelane_dropdown").value;
+        const cycling_volume = document.getElementById("count_dropdown").value;
+
+        const filters = ["all"]; // default array for showing all ata
+
+        // filters.push basically add conditions to the filter
+
+        if (cycling_volume === "high") {
+            filters.push([">=", ["get", "cycling_volume"], 900]);
+        } else if (cycling_volume === "medium") {
+            filters.push([">=", ["get", "cycling_volume"], 300]);
+            filters.push(["<", ["get", "cycling_volume"], 900]);
+        } else if (cycling_volume === "low") {
+            filters.push(["<", ["get", "cycling_volume"], 300]);
+        }
+
+        if (bikelane_usage === "high") {
+            filters.push([">", ["get", "bikelane_usage_percentage"], 70]);
+        } else if (bikelane_usage === "medium") {
+            filters.push([">=", ["get", "bikelane_usage_percentage"], 40]);
+            filters.push(["<", ["get", "bikelane_usage_percentage"], 70]);
+        } else if (bikelane_usage === "low") {
+            filters.push(["<", ["get", "bikelane_usage_percentage"], 40]);
+        } else if (bikelane_usage === "none") {
+            filters.push(["==", ["get", "bikelane_usage_percentage"], null]);
+        }
+
+        map.setFilter('traffic-flow-layer', filters);
+    }
+
+    const bikelane_dropdown = document.getElementById("bikelane_dropdown");
+    const count_dropdown = document.getElementById("count_dropdown");
+
+    bikelane_dropdown.addEventListener('change', () =>{
+            cordon_filter();
+        })
+
+    count_dropdown.addEventListener('change', () =>{
+            cordon_filter();
+        })
+    
+// zoom into the area
+    document.getElementById("zoom_traffic").addEventListener("click", () => {
+        map.flyTo({
+            center: [-79.38, 43.65], // paste your values
+            zoom: 12.23,
+            speed: 1.2
+        });
+    });
+
 /*--------------------------------------------------------------------
-NEW CODE: GET TOP 10 COLLISION HEXGRIDS
+NEW CODE: GET TOP 20 COLLISION HEXGRIDS
 --------------------------------------------------------------------*/
-function get_top10_hotspots(hexgrid, selected_infra) {
+function get_top20_hotspots(hexgrid, selected_infra) {
     if (!hexgrid || !hexgrid.features) {
         return {
-            top10: [],
+            top20: [],
             avg: 0,
             max: 0
         };
@@ -845,7 +898,7 @@ function get_top10_hotspots(hexgrid, selected_infra) {
 
     if (filtered.length === 0) {
         return {
-            top10: [],
+            top20: [],
             avg: 0,
             max: 0
         };
@@ -860,12 +913,12 @@ function get_top10_hotspots(hexgrid, selected_infra) {
     );
 
     // amongst the filtered hexagons with the selected infra, js looks at a pair of hexagons and finds which ones higher and lower and reiterates
-    const top10 = filtered
+    const top20 = filtered
         .sort((a, b) => b.properties.collision_count_hex - a.properties.collision_count_hex)
-        .slice(0, 10);
+        .slice(0, 20);
 
     return {
-        top10: top10,
+        top20: top20,
         avg: avg,
         max: max
     };
@@ -875,11 +928,11 @@ function get_top10_hotspots(hexgrid, selected_infra) {
 document.getElementById("hotspots-button").addEventListener("click", () => {
     const selected_infra = document.getElementById("infra-dropdown").value;
 
-    const result = get_top10_hotspots(hotspot_hexgrids, selected_infra);
+    const result = get_top20_hotspots(hotspot_hexgrids, selected_infra);
 
     map.getSource("hotspots").setData({
         type: "FeatureCollection",
-        features: result.top10
+        features: result.top20
     });
 
     const average_max_infra = document.getElementById("average_max_infra");
@@ -908,6 +961,19 @@ document.getElementById("hotspots-button").addEventListener("click", () => {
     const overall_avg = overall_average(hotspot_hexgrids);
     console.log("overall avg:", overall_avg);
 });
+
+map.on('click', 'hotspots-layer', (e) => {
+    const f = e.features[0].properties; /// to simplify code below
+    new mapboxgl.Popup() // Declare new popup object on each click
+        .setLngLat(e.lngLat) // Use method to set coordinates of popup based on mouse click location
+        .setHTML(
+            "<h1>Grid</h1>" +
+            "Collision Count: " + f.collision_count_hex + "<br>" + "<br>" +
+            "Fatality Count: " + f.fatality_count_hex + "<br>" + "<br>" +
+            "Collisions with Injuries (%): " + f.injury_proportion_hex.toFixed(2) +"%")
+        .addTo(map); // Show popup on map
+});
+
 
 /*--------------------------------------------------------------------
 OLD CODE: GET TOP 10 COLLISION HEXGRIDS

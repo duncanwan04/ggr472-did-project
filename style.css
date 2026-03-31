@@ -67,6 +67,11 @@
     background-color: lightblue;
 }
 
+.indented-group {
+    margin-left: 20px;   /* controls indent */
+    margin-top: 8px;     /* spacing from top line */
+}
+
 .legend {
     position: absolute;
     z-index: 9999;
@@ -166,3 +171,4 @@
         vertical-align: middle;
         border-radius: 2px;
     }
+
