@@ -121,7 +121,7 @@ map.on('load', async () => {
                 ['Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
                 'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'], '#f4a261',
                 // On-Road
-                ['Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'], '#2196F3',
+                ['Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'], '#00BCD4',
                 // Physically Separated
                 ['Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'], '#4CAF50',
                 // Off-Road (everything else)
@@ -974,6 +974,13 @@ map.on('click', 'hotspots-layer', (e) => {
         .addTo(map); // Show popup on map
 });
 
+/*--------------------------------------------------------------------
+COLLAPSIBLE PANELS
+--------------------------------------------------------------------*/
+function togglePanel(id) {
+    const content = document.getElementById(id);
+    content.classList.toggle('open');
+}
 
 /*--------------------------------------------------------------------
 OLD CODE: GET TOP 10 COLLISION HEXGRIDS
