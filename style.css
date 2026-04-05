@@ -53,8 +53,9 @@
     padding: 5px;
     margin-bottom: 10px;
     border-radius: 20px;
-    width: 480px;
+    width: 95%;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 #year-filter{
@@ -171,4 +172,16 @@
         vertical-align: middle;
         border-radius: 2px;
     }
+    
+/* Collapsible panels */
+.panel-content {
+    display: none;
+}
 
+.panel-content.open {
+    display: block;
+}
+
+.panel h2 {
+    cursor: pointer;
+}  
