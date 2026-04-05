@@ -22,7 +22,9 @@
         <p>Cycling infrastructure, collisions, traffic flow</p>
 
         <div id="safety" class="panel"> 
-            <h2>Safety (Collisions)     <button id="toggle_safety">On/Off</button></h2>
+            <h2 onclick="togglePanel('safety-content')">Safety (Collisions)     <button id="toggle_safety">On/Off</button></h2>
+            <div id="safety-content" class="panel-content">
+                <p><small>Use the filters below to explore cycling collision patterns across Toronto.</small></p>
                 <label for="year-filter">Collision Year:</label>
                 <select id="year-filter">
                     <option value="all">All Years</option>
@@ -40,90 +42,92 @@
                 <label for="injury_slider">Collisions Resulting in Injury (%):</label>
                 <input id="injury_input" type="number" min="0" max="100" step="1" value="0">
                 <input id="injury_slider" type="range" min="0" max="100" step="1" value="0">
+            </div>
 
         </div>
 
 
 
         <div class="panel" id="infrastructure">
-            <h2>Infrastructure     <button id="toggle_infrastructure">On/Off</button></h2>
-            <label>
-                <input type="checkbox" id="cb-sharrows" checked>
-                Sharrows
-            </label><br>
-            <label>
-                <input type="checkbox" id="cb-onroad" checked>
-                On-Road Bike Lane
-            </label><br>
-            <label>
-                <input type="checkbox" id="cb-separated" checked>
-                Physically Separated
-            </label><br>
-            <label>
-                <input type="checkbox" id="cb-offroad" checked>
-                Off-Road / Trail
-            </label>
+            <h2 onclick="togglePanel('infrastructure-content')">Infrastructure     <button id="toggle_infrastructure">On/Off</button></h2>
+            <div id="infrastructure-content" class="panel-content">
+                <p><small>Use the checkboxes to show or hide cycling infrastructure by type.</small></p>
+                <label>
+                    <input type="checkbox" id="cb-sharrows" checked>
+                    Sharrows
+                </label><br>
+                <label>
+                    <input type="checkbox" id="cb-onroad" checked>
+                    On-Road Bike Lane
+                </label><br>             
+                <label>
+                    <input type="checkbox" id="cb-separated" checked>
+                    Physically Separated
+                </label><br>       
+                <label>
+                    <input type="checkbox" id="cb-offroad" checked>
+                    Off-Road / Trail
+                </label>  
+            </div>
         </div>
 
         <div class="panel" id="traffic-flow">
             <div class="traffic-header">
-                <h2>Traffic Flow 
+                <h2 onclick="togglePanel('traffic-content')">Traffic Flow 
                 <button id="toggle_traffic">On/Off</button>
                 <button id="zoom_traffic">Zoom to area</button>
                 </h2>
             </div>
-            <p>
-                Traffic flow data represent cordon counts collected at entry points during a single observation period in 2022
-            </p>
+            <div id="traffic-content" class="panel-content">
+                <p>
+                    Traffic flow data represent cordon counts collected at entry points during a single observation period in 2022
+                </p>
 
-            Show Cordon Counts based on:
-            
-            <div class="indented-group">
-                <div>
-                    Bike Lane Usage (%):
-                    <select id="bikelane_dropdown">
-                        <option value="selected" selected>All</option>
-                        <option value="none">No Biking Infrastructure</option>
-                        <option value="high">High (>70%)</option>
-                        <option value="medium">Medium (40-70%)</option>
-                        <option value="low">Low (&lt;40%)</option>
-                    </select>
-                </div>
+                Show Cordon Counts based on:
+                
+                <div class="indented-group">
+                    <div>
+                        Bike Lane Usage (%):
+                        <select id="bikelane_dropdown">
+                            <option value="selected" selected>All</option>
+                            <option value="none">No Biking Infrastructure</option>
+                            <option value="high">High (>70%)</option>
+                            <option value="medium">Medium (40-70%)</option>
+                            <option value="low">Low (&lt;40%)</option>
+                        </select>
+                    </div>
 
-                <div>
-                    Cycling Volume (Count):
-                    <select id="count_dropdown">
-                        <option value="selected" selected>All</option>
-                        <option value="high">High (>900)</option>
-                        <option value="medium">Medium (300-900)</option>
-                        <option value="low">Low (300)</option>
-                    </select>
+                    <div>
+                        Cycling Volume (Count):
+                        <select id="count_dropdown">
+                            <option value="selected" selected>All</option>
+                            <option value="high">High (>900)</option>
+                            <option value="medium">Medium (300-900)</option>
+                            <option value="low">Low (300)</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-
-
-        </div>     
+        </div>  
 
         <div class="panel" id="hotspots">
-            <h2>Top 20 Collision Hotspots (By Infrastructure Type)    <button id="toggle_hotspots">On/Off</button></h2>
-
-        <p>
-            Aggregated cycling collision data from 2020–2025 for comparison between cycling volume and usage of bikelane
-            <br>
-            (Overall Average Collisions/hexgrid: 0.87)
-        </p>
-
-            <label for="infra-dropdown">Infrastructure Type:</label>
-            <select id="infra-dropdown">
-                <option value="none">No Infrastructure</option>
-                <option value="sharrows">Sharrows</option>
-                <option value="onroad">On-Road Bike Lanes</option>
-                <option value="offroad">Off-Road Trails</option>
-                <option value="separated">Physically Separated</option>
-            </select>
-            <button id="hotspots-button">Show Top 20 Hotspots</button>
-            <p class="indented-group" id="average_max_infra"> </p>
-            **Adjust the injury slider to redefine hotspots based on collision severity rather than overall frequency.
+            <h2 onclick="togglePanel('hotspots-content')">Top 20 Collision Hotspots (By Infrastructure Type)    <button id="toggle_hotspots">On/Off</button></h2>
+            <div id="hotspots-content" class="panel-content">
+                <p>Aggregated cycling collision data from 2020–2025 for comparison between cycling volume and usage of bikelane
+                    <br>(Overall Average Collisions/hexgrid: 0.87)
+                </p>
+                <label for="infra-dropdown">Infrastructure Type:</label>
+                <select id="infra-dropdown">
+                    <option value="none">No Infrastructure</option>
+                    <option value="sharrows">Sharrows</option>
+                    <option value="onroad">On-Road Bike Lanes</option>
+                    <option value="offroad">Off-Road Trails</option>
+                    <option value="separated">Physically Separated</option>
+                </select>
+                <button id="hotspots-button">Show Top 20 Hotspots</button>
+                <p class="indented-group" id="average_max_infra"> </p>
+                **Adjust the injury slider to redefine hotspots based on collision severity rather than overall frequency.
+            </div>
         </div>
 
     </div>
@@ -143,7 +147,7 @@
         <div id="infrastructure_legend" class="legend_section">
             <h4>Infrastructure</h4>
             <div><span class="infra-line" style="background:#f4a261;"></span>Sharrows</div>
-            <div><span class="infra-line" style="background:#2196F3;"></span>On-Road Bike Lane</div>
+            <div><span class="infra-line" style="background:#00BCD4;"></span>On-Road Bike Lane</div>
             <div><span class="infra-line" style="background:#4CAF50;"></span>Physically Separated</div>
             <div><span class="infra-line" style="background:#9C27B0;"></span>Off-Road / Trail</div>
         </div>
