@@ -101,31 +101,31 @@
     }
 
     #safety_legend div:nth-child(3) span {
-        background-color: #deebf7;
+        background-color: #FEF4E6;
     }
 
     #safety_legend div:nth-child(4) span {
-        background-color: #c6dbef;
+        background-color: #FDE0BA;
     }
 
     #safety_legend div:nth-child(5) span {
-        background-color: #9ecae1;
+        background-color: #FBCC8E;
     }
 
     #safety_legend div:nth-child(6) span {
-        background-color: #6baed6;
+        background-color: #F9B862;
     }
 
     #safety_legend div:nth-child(7) span {
-        background-color: #4292c6;
+        background-color: #F8A335;
     }
 
     #safety_legend div:nth-child(8) span {
-        background-color: #2171b5;
+        background-color: #F68F09;
     }
 
     #safety_legend div:nth-child(9) span {
-        background-color: #045296;
+        background-color: #CA7607;
     }
 
 

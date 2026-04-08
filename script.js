@@ -49,119 +49,6 @@ map.on("zoom", () => {
 map.on('load', async () => {
 
     /*--------------------------------------------------------------------
-    TRAFFIC FLOW SECTION
-    --------------------------------------------------------------------*/
-
-    map.addSource('traffic_flow', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/cleaned_cordon_counts.geojson'
-    });
-
-    map.addLayer({
-        'id': 'traffic-flow-layer',
-        'type': 'circle',
-        'source': 'traffic_flow',
-        'paint': {
-            'circle-radius': [
-                'step',
-                ['zoom'],
-                ['*', ['sqrt', ['get', 'cycling_volume']], 0.2],
-                11, ['*', ['sqrt', ['get', 'cycling_volume']], 0.4],
-                12,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.5],
-                13,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.7],
-                ],
-            'circle-color': [
-                'case',
-                ['==', ['get', 'bikelane_usage_percentage'], null],
-                '#6E6B6B', 
-
-                ['step',
-                ['get', 'bikelane_usage_percentage'],
-                "#e5f5e0",
-                0.0001, "#a1d99b",
-                50, "#74c476",
-                80, '#31a354',
-                95, '#006d2c']
-            ],
-            'circle-opacity': 0.5
-            }
-    });
-
-    /*--------------------------------------------------------------------
-    INFRASTRUCTURE LAYER 
-    --------------------------------------------------------------------*/
-    const infrastructure_response = await fetch(
-        'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/cycling_network.geojson'
-    );
-    
-    infrastructure_data = await infrastructure_response.json();
-    
-    map.addSource('infrastructure', {
-        type: 'geojson',
-        data: infrastructure_data
-    });
-
-    console.log(infrastructure_data);
-
-    map.addLayer({
-        'id': 'infrastructure-layer',
-        'type': 'line',
-        'source': 'infrastructure',
-        'layout': {
-            'visibility': 'visible',
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-width': 2,
-            'line-color': [
-                'match',
-                ['get', 'INFRA_HIGHORDER'],
-                // Sharrows
-                ['Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
-                'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'], '#f4a261',
-                // On-Road
-                ['Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'], '#00BCD4',
-                // Physically Separated
-                ['Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'], '#4CAF50',
-                // Off-Road (everything else)
-                '#9C27B0'
-            ]
-        }
-   });
-
-   /// Following part for downloading the infrastructure layer as geojson for hotspot analysis part
-   /// Using functions Isabella made 
-
-    // function get_infra_group(type) {
-    //     if (sharrow_types.includes(type)) return "sharrows";
-    //     if (onroad_types.includes(type)) return "onroad";
-    //     if (separated_types.includes(type)) return "separated";
-    //     if (offroad_types.includes(type)) return "offroad";
-    //     return "none";
-    // }
-
-    // const grouped_infra = {
-    //     type: "FeatureCollection",
-    //     features: infrastructure_data.features.map(f => ({
-    //         ...f,
-    //         properties: {
-    //             ...f.properties,
-    //             infra_group: get_infra_group(f.properties.INFRA_HIGHORDER)
-    //         }
-    //     }))
-    // };
-
-    // const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(grouped_infra));
-
-    // const dl = document.createElement("a");
-    // dl.href = dataStr;
-    // dl.download = "grouped_infrastructure.geojson";
-    // document.body.appendChild(dl);
-    // dl.click();
-    // dl.remove();
-
-    /*--------------------------------------------------------------------
     SAFETY SECTION
     --------------------------------------------------------------------*/
     /// Using const to get data because I need to use this dataset for HexGrid in Turf, which requires
@@ -246,6 +133,82 @@ map.on('load', async () => {
         }
     });
 
+
+    /*--------------------------------------------------------------------
+    INFRASTRUCTURE LAYER 
+    --------------------------------------------------------------------*/
+    const infrastructure_response = await fetch(
+        'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/main/data/cycling_network.geojson'
+    );
+    
+    infrastructure_data = await infrastructure_response.json();
+    
+    map.addSource('infrastructure', {
+        type: 'geojson',
+        data: infrastructure_data
+    });
+
+    console.log(infrastructure_data);
+
+    map.addLayer({
+        'id': 'infrastructure-layer',
+        'type': 'line',
+        'source': 'infrastructure',
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-width': 2,
+            'line-color': [
+                'match',
+                ['get', 'INFRA_HIGHORDER'],
+                // Sharrows
+                ['Sharrows', 'Sharrows - Arterial', 'Sharrows - Arterial - Connector',
+                'Sharrows - Wayfinding', 'Signed Route (No Pavement Markings)'], '#f4a261',
+                // On-Road
+                ['Bike Lane', 'Bike Lane - Buffered', 'Bike Lane - Contraflow'], '#00BCD4',
+                // Physically Separated
+                ['Cycle Track', 'Cycle Track - Contraflow', 'Bi-Directional Cycle Track'], '#4CAF50',
+                // Off-Road (everything else)
+                '#9C27B0'
+            ]
+        }
+   });
+
+   /// Following part for downloading the infrastructure layer as geojson for hotspot analysis part
+   /// Using functions Isabella made 
+
+    // function get_infra_group(type) {
+    //     if (sharrow_types.includes(type)) return "sharrows";
+    //     if (onroad_types.includes(type)) return "onroad";
+    //     if (separated_types.includes(type)) return "separated";
+    //     if (offroad_types.includes(type)) return "offroad";
+    //     return "none";
+    // }
+
+    // const grouped_infra = {
+    //     type: "FeatureCollection",
+    //     features: infrastructure_data.features.map(f => ({
+    //         ...f,
+    //         properties: {
+    //             ...f.properties,
+    //             infra_group: get_infra_group(f.properties.INFRA_HIGHORDER)
+    //         }
+    //     }))
+    // };
+
+    // const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(grouped_infra));
+
+    // const dl = document.createElement("a");
+    // dl.href = dataStr;
+    // dl.download = "grouped_infrastructure.geojson";
+    // document.body.appendChild(dl);
+    // dl.click();
+    // dl.remove();
+
+
     /*--------------------------------------------------------------------
     NOT INCLUDING ANYMORE: BIKESHARE LAYER
     --------------------------------------------------------------------*/
@@ -309,6 +272,45 @@ map.on('load', async () => {
     //     dlAnchor.remove();
 
     updating_safety_layer("all");
+
+    /*--------------------------------------------------------------------
+    TRAFFIC FLOW SECTION
+    --------------------------------------------------------------------*/
+
+    map.addSource('traffic_flow', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/duncanwan04/ggr472-did-project/refs/heads/main/data/cleaned_cordon_counts.geojson'
+    });
+
+    map.addLayer({
+        'id': 'traffic-flow-layer',
+        'type': 'circle',
+        'source': 'traffic_flow',
+        'paint': {
+            'circle-radius': [
+                'step',
+                ['zoom'],
+                ['*', ['sqrt', ['get', 'cycling_volume']], 0.2],
+                11, ['*', ['sqrt', ['get', 'cycling_volume']], 0.4],
+                12,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.5],
+                13,   ['*', ['sqrt', ['get', 'cycling_volume']], 0.7],
+                ],
+            'circle-color': [
+                'case',
+                ['==', ['get', 'bikelane_usage_percentage'], null],
+                '#6E6B6B', 
+
+                ['step',
+                ['get', 'bikelane_usage_percentage'],
+                "#e5f5e0",
+                0.0001, "#a1d99b",
+                50, "#74c476",
+                80, '#31a354',
+                95, '#006d2c']
+            ],
+            'circle-opacity': 0.5
+            }
+    });
     
 });
 
@@ -629,26 +631,26 @@ function building_hexgrids(collisions_filtered){
             "step",
             ["get", "collision_count_hex"],
             "rgba(0,0,0,0)",
-            1, "#deebf7",
-            3, "#c6dbef",
-            6, "#9ecae1",
-            11, "#6baed6",
-            20, "#4292c6",
-            30, "#2171b5",
-            40, "#045296"
+            1, "#FEF4E6",
+            3, "#FDE0BA",
+            6, "#FBCC8E",
+            11, "#F9B862",
+            20, "#F8A335",
+            30, "#F68F09",
+            40, "#CA7607"
         ];
 
         const year_scale = [
             "step",
             ["get", "collision_count_hex"],
             "rgba(0,0,0,0)",
-            1, "#deebf7",
-            2, "#c6dbef",
-            3, "#9ecae1",
-            4, "#6baed6",
-            6, "#4292c6",
-            8, "#2171b5",
-            12, "#045296"
+            1, "#FEF4E6",
+            2, "#FDE0BA",
+            3, "#FBCC8E",
+            4, "#F9B862",
+            6, "#F8A335",
+            8, "#F68F09",
+            12, "#CA7607"
         ];
         
 /// function 3: gets the collision points that resulted in fatalities
