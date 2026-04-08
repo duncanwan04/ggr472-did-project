@@ -992,14 +992,6 @@ map.on('click', 'hotspots-layer', (e) => {
 });
 
 /*--------------------------------------------------------------------
-COLLAPSIBLE PANELS
---------------------------------------------------------------------*/
-function togglePanel(id) {
-    const content = document.getElementById(id);
-    content.classList.toggle('open');
-}
-
-/*--------------------------------------------------------------------
 OLD CODE: GET TOP 10 COLLISION HEXGRIDS
 --------------------------------------------------------------------*/
 /// button to get the infrastructure tyoe we are interested in 
