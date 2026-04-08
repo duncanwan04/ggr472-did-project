@@ -330,12 +330,14 @@ document.getElementById("toggle_safety").addEventListener("click", () => {
             map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'visible');
             safety_legend.style.display = "block";
         }
+        document.getElementById('safety-content').classList.add('open');
     } else {
        map.setLayoutProperty('collision-hexgrids-layer', 'visibility', 'none'); 
        map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'none');
        safety_legend.style.display = "none";
+       document.getElementById('safety-content').classList.remove('open');
     }
-}); 
+});
 
 document.getElementById("toggle_traffic").addEventListener("click", () => {
     const visibility_status = map.getLayoutProperty('traffic-flow-layer', 'visibility');
@@ -345,12 +347,14 @@ document.getElementById("toggle_traffic").addEventListener("click", () => {
         map.setLayoutProperty('traffic-flow-layer', 'visibility', 'visible');
         traffic_flow_legend.style.display = "block";
         traffic_flow_hover.style.display = "block";
+        document.getElementById('traffic-content').classList.add('open');
     } else {
        map.setLayoutProperty('traffic-flow-layer', 'visibility', 'none'); 
        traffic_flow_legend.style.display = "none";
        traffic_flow_hover.style.display = "none";
+       document.getElementById('traffic-content').classList.remove('open');
     }
-}); 
+});
 
 document.getElementById("toggle_infrastructure").addEventListener("click", () => {
     const visibility_status = map.getLayoutProperty('infrastructure-layer', 'visibility');
@@ -358,11 +362,13 @@ document.getElementById("toggle_infrastructure").addEventListener("click", () =>
     if (visibility_status === "none"){
         map.setLayoutProperty('infrastructure-layer', 'visibility', 'visible');
         infrastructure_legend.style.display = "block";
+        document.getElementById('infrastructure-content').classList.add('open');
     } else {
        map.setLayoutProperty('infrastructure-layer', 'visibility', 'none'); 
        infrastructure_legend.style.display = "none";
+       document.getElementById('infrastructure-content').classList.remove('open');
     }
-}); 
+});
 
 // document.getElementById("toggle_bikeshare").addEventListener("click", () => {
 //     const visibility_status = map.getLayoutProperty('bikeshare-layer', 'visibility');
@@ -382,11 +388,13 @@ document.getElementById("toggle_hotspots").addEventListener("click", () => {
     if (visibility_status === "none"){
         map.setLayoutProperty('hotspots-layer', 'visibility', 'visible');
         hotspots_legend.style.display = "block";
+        document.getElementById('hotspots-content').classList.add('open');
     } else {
        map.setLayoutProperty('hotspots-layer', 'visibility', 'none'); 
        hotspots_legend.style.display = "none";
+       document.getElementById('hotspots-content').classList.remove('open');
     }
-}); 
+});
 
 /*--------------------------------------------------------------------
 INFRASTRUCTURE SECTION
