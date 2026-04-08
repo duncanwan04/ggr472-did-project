@@ -319,7 +319,6 @@ map.on('load', async () => {
 TURNING LAYERS ON/OFF
 --------------------------------------------------------------------*/
 document.getElementById("toggle_safety").addEventListener("click", () => {
-    const visibility_status = map.getLayoutProperty('collision-hexgrids-layer', 'visibility');
     const safety_legend = document.getElementById("safety_legend");
     safety_visible = !safety_visible;
     
@@ -331,11 +330,13 @@ document.getElementById("toggle_safety").addEventListener("click", () => {
             safety_legend.style.display = "block";
         }
         document.getElementById('safety-content').classList.add('open');
+        document.getElementById('toggle_safety').textContent = 'On';
     } else {
        map.setLayoutProperty('collision-hexgrids-layer', 'visibility', 'none'); 
        map.setLayoutProperty('fatal-collision-points-layer', 'visibility', 'none');
        safety_legend.style.display = "none";
        document.getElementById('safety-content').classList.remove('open');
+       document.getElementById('toggle_safety').textContent = 'Off';
     }
 });
 
@@ -348,11 +349,13 @@ document.getElementById("toggle_traffic").addEventListener("click", () => {
         traffic_flow_legend.style.display = "block";
         traffic_flow_hover.style.display = "block";
         document.getElementById('traffic-content').classList.add('open');
+        document.getElementById('toggle_traffic').textContent = 'On';
     } else {
        map.setLayoutProperty('traffic-flow-layer', 'visibility', 'none'); 
        traffic_flow_legend.style.display = "none";
        traffic_flow_hover.style.display = "none";
        document.getElementById('traffic-content').classList.remove('open');
+       document.getElementById('toggle_traffic').textContent = 'Off';
     }
 });
 
@@ -363,10 +366,12 @@ document.getElementById("toggle_infrastructure").addEventListener("click", () =>
         map.setLayoutProperty('infrastructure-layer', 'visibility', 'visible');
         infrastructure_legend.style.display = "block";
         document.getElementById('infrastructure-content').classList.add('open');
+        document.getElementById('toggle_infrastructure').textContent = 'On';
     } else {
        map.setLayoutProperty('infrastructure-layer', 'visibility', 'none'); 
        infrastructure_legend.style.display = "none";
        document.getElementById('infrastructure-content').classList.remove('open');
+       document.getElementById('toggle_infrastructure').textContent = 'Off';
     }
 });
 
@@ -389,10 +394,12 @@ document.getElementById("toggle_hotspots").addEventListener("click", () => {
         map.setLayoutProperty('hotspots-layer', 'visibility', 'visible');
         hotspots_legend.style.display = "block";
         document.getElementById('hotspots-content').classList.add('open');
+        document.getElementById('toggle_hotspots').textContent = 'On';
     } else {
        map.setLayoutProperty('hotspots-layer', 'visibility', 'none'); 
        hotspots_legend.style.display = "none";
        document.getElementById('hotspots-content').classList.remove('open');
+       document.getElementById('toggle_hotspots').textContent = 'Off';
     }
 });
 
